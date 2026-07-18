@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeria & Valerio — Tu Recepcionista con IA | Riviera Maya</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --card: #121b2e;
+    --accent: #2dd4bf;
+    --accent2: #f59e0b;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --danger: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(160deg, var(--bg), #0f1729);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 24px 16px 60px;
+  }
+  .lang-toggle { align-self: flex-end; margin-bottom: 18px; display: flex; gap: 8px; }
+  .lang-toggle button {
+    background: var(--card); color: var(--muted);
+    border: 1px solid #1e293b; padding: 6px 14px;
+    border-radius: 20px; cursor: pointer; font-size: 14px;
+  }
+  .lang-toggle button.active { background: var(--accent); color: #0b1220; border-color: var(--accent); font-weight: 600; }
+  header { text-align: center; max-width: 640px; margin-bottom: 26px; }
+  header h1 { font-size: 2rem; margin-bottom: 10px; line-height: 1.15; }
+  header h1 span { color: var(--accent); }
+  header p { color: var(--muted); font-size: 1.05rem; line-height: 1.5; }
+  .card {
+    background: var(--card); border: 1px solid #1e293b; border-radius: 18px;
+    padding: 28px; max-width: 560px; width: 100%; text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  }
+  .pick-label { color: var(--muted); font-size: 0.95rem; margin-bottom: 14px; }
+  .voice-choices { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+  .voice-chip {
+    flex: 1; min-width: 130px; cursor: pointer; padding: 16px 10px;
+    border: 2px solid #1e293b; border-radius: 14px; background: #0f1828;
+    transition: all .15s; user-select: none;
+  }
+  .voice-chip .emoji { font-size: 1.8rem; }
+  .voice-chip .name { font-weight: 600; margin-top: 6px; }
+  .voice-chip .sub { color: var(--muted); font-size: 0.8rem; }
+  .voice-chip.selected { border-color: var(--accent); background: #0c2a2a; }
+  .talk-btn {
+    width: 100%; padding: 18px; border: none; border-radius: 14px;
+    font-size: 1.15rem; font-weight: 700; cursor: pointer; color: #0b1220;
+    background: linear-gradient(135deg, var(--accent), #22d3ee);
+    transition: transform .1s, opacity .2s; letter-spacing: .3px;
+  }
+  .talk-btn:hover { transform: translateY(-2px); }
+  .talk-btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  .talk-btn.live { background: var(--danger); color: #fff; }
+  .status { margin-top: 18px; min-height: 22px; color: var(--muted); font-size: 0.95rem; }
+  .status .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); margin-right: 7px; vertical-align: middle; animation: pulse 1.4s infinite; }
+  @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+  .price { margin-top: 22px; padding-top: 18px; border-top: 1px solid #1e293b; color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .price b { color: var(--accent2); }
+  footer { color: var(--muted); font-size: 0.82rem; text-align: center; margin-top: 26px; opacity: .85; max-width: 560px; line-height: 1.5; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="lang-toggle">
+    <button id="btn-es" class="active">🇲🇽 Español</button>
+    <button id="btn-en">🇺🇸 English</button>
+  </div>
+
+  <header>
+    <h1 data-es="Conoce a tu Recepcionista con IA" data-en="Meet Your AI Receptionist">Conoce a tu Recepcionista con IA</h1>
+    <p data-es="Elige la voz y pulsa hablar. Ella (o él) te explicará en vivo qué hace y cómo ayuda a tu negocio en Puerto Morelos, Playa del Carmen y Cancún."
+       data-en="Pick a voice and press talk. She (or he) will explain live what she does and how she helps your business in Puerto Morelos, Playa del Carmen and Cancún.">
+       Elige la voz y pulsa hablar. Ella (o él) te explicará en vivo qué hace y cómo ayuda a tu negocio en Puerto Morelos, Playa del Carmen y Cancún.</p>
+  </header>
+
+  <div class="card">
+    <div class="pick-label" data-es="1. Elige la voz de tu recepcionista:" data-en="1. Choose your receptionist's voice:">1. Elige la voz de tu recepcionista:</div>
+    <div class="voice-choices">
+      <div class="voice-chip selected" data-voice="female" id="chip-f">
+        <div class="emoji">👩</div>
+        <div class="name">Valeria</div>
+        <div class="sub" data-es="Voz femenina" data-en="Female voice">Voz femenina</div>
+      </div>
+      <div class="voice-chip" data-voice="male" id="chip-m">
+        <div class="emoji">👨</div>
+        <div class="name">Valerio</div>
+        <div class="sub" data-es="Voz masculina" data-en="Male voice">Voz masculina</div>
+      </div>
+    </div>
+
+    <button class="talk-btn" id="talk" data-es="🎤 HABLAR CON VALERIA" data-en="🎤 TALK TO VALERIA">🎤 HABLAR CON VALERIA</button>
+    <div class="status" id="status"></div>
+
+    <div class="price" data-es="<b>Precio:</b> 2,000 pesos al mes + 500 pesos de configuración. (A veces hay promociones — pregúntale a la empresa por la activa.)"
+         data-en="<b>Price:</b> 2,000 pesos/month + 500 pesos setup. (Promotions sometimes available — ask the company for the active one.)">
+         <b>Precio:</b> 2,000 pesos al mes + 500 pesos de configuración. (A veces hay promociones — pregúntale a la empresa por la activa.)</div>
+  </div>
+
+  <footer data-es="Demo en vivo · Habla en español o inglés · La asistente cambia de idioma según tú hables."
+           data-en="Live demo · Speak Spanish or English · The assistant switches language to match you.">
+           Demo en vivo · Habla en español o inglés · La asistente cambia de idioma según tú hables.</footer>
+
+  <!-- Vapi browser web SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/index.js"></script>
+  <script>
+    // === CONFIG (edit these) ===
+    const VAPI_PUBLIC_KEY = "67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
+    const ASSISTANTS = {
+      female: "77b7f57d-2e49-41de-b4e2-1d8aeb16b808", // Valeria
+      male:   "8a09efa8-c848-462c-b627-e8d353e12d40"      // Valerio
+    };
+    // ===========================
+
+    let vapi = null;
+    let selected = "female";
+    let connected = false;
+
+    const chips = document.querySelectorAll('.voice-chip');
+    const talkBtn = document.getElementById('talk');
+    const statusEl = document.getElementById('status');
+
+    function setStatus(text, live) {
+      if (!text) { statusEl.innerHTML = ""; return; }
+      statusEl.innerHTML = (live ? '<span class="dot"></span>' : '') + text;
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        if (connected) return; // don't switch mid-call
+        chips.forEach(c => c.classList.remove('selected'));
+        chip.classList.add('selected');
+        selected = chip.dataset.voice;
+        const name = selected === 'female' ? 'VALERIA' : 'VALERIO';
+        talkBtn.dataset.es = '🎤 HABLAR CON ' + name;
+        talkBtn.dataset.en = '🎤 TALK TO ' + name;
+        refreshLang();
+      });
+    });
+
+    // --- Language toggle ---
+    let lang = 'es';
+    function refreshLang() {
+      document.querySelectorAll('[data-es][data-en]').forEach(el => {
+        const txt = el.dataset[lang];
+        if (el.tagName === 'BUTTON') el.textContent = txt;
+        else el.innerHTML = txt;
+      });
+      document.getElementById('btn-es').classList.toggle('active', lang==='es');
+      document.getElementById('btn-en').classList.toggle('active', lang==='en');
+      document.documentElement.lang = lang;
+    }
+    document.getElementById('btn-es').onclick = () => { lang='es'; refreshLang(); };
+    document.getElementById('btn-en').onclick = () => { lang='en'; refreshLang(); };
+    refreshLang();
+
+    talkBtn.addEventListener('click', async () => {
+      if (!vapi) vapi = new Vapi(VAPI_PUBLIC_KEY);
+      if (connected) { vapi.stop(); return; }
+
+      setStatus(lang==='es' ? 'Conectando…' : 'Connecting…', false);
+      talkBtn.disabled = true;
+
+      vapi.on('call-start', () => {
+        connected = true;
+        talkBtn.disabled = false;
+        talkBtn.classList.add('live');
+        talkBtn.textContent = lang==='es' ? '⏹ TERMINAR LLAMADA' : '⏹ END CALL';
+        setStatus(lang==='es' ? 'En línea — habla normalmente.' : 'Live — just talk normally.', true);
+      });
+      vapi.on('call-end', () => {
+        connected = false;
+        talkBtn.classList.remove('live');
+        talkBtn.disabled = false;
+        const name = selected === 'female' ? 'VALERIA' : 'VALERIO';
+        talkBtn.dataset.es = '🎤 HABLAR CON ' + name;
+        talkBtn.dataset.en = '🎤 TALK TO ' + name;
+        refreshLang();
+        setStatus(lang==='es' ? 'Llamada terminada.' : 'Call ended.', false);
+      });
+      vapi.on('error', (e) => {
+        console.error(e);
+        talkBtn.disabled = false;
+        setStatus(lang==='es' ? 'Error: revisa el micrófono y vuelve a intentar.' : 'Error: check mic and try again.', false);
+      });
+
+      try {
+        await vapi.start(ASSISTANTS[selected]);
+      } catch (err) {
+        console.error(err);
+        talkBtn.disabled = false;
+        setStatus(lang==='es' ? 'No se pudo iniciar. ¿Permitiste el micrófono?' : 'Could not start. Did you allow the mic?', false);
+      }
+    });
+  </script>
+</body>
+</html>
