@@ -171,6 +171,16 @@
     overflow: hidden;
   }
   .hidden { display: none; }
+
+  .pricing { max-width: 720px; width: 100%; margin-bottom: 40px; text-align: center; }
+  .pricing h2 { margin-bottom: 20px; color: var(--text); }
+  .price-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .price-card { background: var(--card); border: 1px solid #1e293b; border-radius: 16px; padding: 24px; flex: 1; min-width: 220px; }
+  .price-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
+  .price { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+  .price span { font-size: 1rem; color: var(--muted); font-weight: 600; }
+  .price-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
+
 </style>
 </head>
 <body>
@@ -233,6 +243,23 @@
       </div>
     </div>
   </div>
+
+    <div class="pricing">
+    <h2 data-en="Simple, flat pricing" data-es="Precio fijo y simple"></h2>
+    <div class="price-row">
+      <div class="price-card">
+        <h3 data-en="One-time setup" data-es="Configuración única"></h3>
+        <div class="price">$2,000 <span>MXN</span></div>
+        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios."></p>
+      </div>
+      <div class="price-card">
+        <h3 data-en="Monthly" data-es="Mensual"></h3>
+        <div class="price">$2,000 <span>MXN/mo</span></div>
+        <p data-en="Flat rate. 24/7 bilingual reception — no per-call fees, ever." data-es="Tarifa fija. Recepción bilingüe 24/7 — sin costo por llamada, nunca."></p>
+      </div>
+    </div>
+  </div>
+
 
   <footer data-en="A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live."
           data-es="Una demostración de Yan — Puerto Morelos, Quintana Roo. Haz clic en 'Habla con Sofia' arriba para probarlo en vivo.">
