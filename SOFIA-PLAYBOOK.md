@@ -60,3 +60,11 @@ The page is **config-driven** so spinning up a client is fast:
 - First real client → clone assistant per business so Sofia says their name.
 - Rotate the Vapi API key once this is finished (it has sat in chat).
 - Cartoon Sofia face is in the hero; illustrated explainer strips can follow if wanted.
+
+## 10. UK / North West England clone
+- **Page:** `https://dafnesqualifiedsolutions-ops.github.io/sofia/uk.html` — cloned from the MX page (contact moved to the end, £ pricing, blue/white/red edge via `uk.css`).
+- **Pricing (GBP):** one-time setup **£199**, monthly **£149** (flat, no per-call fees). Up-front year = 2 months free still applies.
+- **UK brain (Vapi assistant):** `Sofia - UK North West` (id `6933946a-8b14-4881-9725-3e4505d3a1eb`), British voice `en-GB-SoniaNeural`, prompt localized to Liverpool/Manchester + £149/£199, multi-language for Polish/Urdu/Arabic communities. `app.js` routes `uk.html` → this assistant automatically (`assistantId()`).
+- **UK leads:** `capture_lead_uk` tool (id `d1b5608f-4ebe-42b9-ab1b-6df67f00d3a2`) — same Formspree inbox but tagged `region=UK`. Website forms also tag `region` (MX/UK) in code, so the two markets are separable in the inbox.
+- **UK demo audio:** `audio-uk/` regenerated — British voice, UK business scenarios (salon / barber / dry-cleaner / Liverpool stadium tour / Polish↔English switch). UK page points at `audio-uk/` via `AUDIO_BASE`.
+- **Still open for UK:** (1) a UK phone number (Twilio) for inbound SMS/calls — the web "Talk to Sofia" already works without one; (2) a UK WhatsApp number (button inert until `?wa=` set); (3) demo-call text labels still say "Airbnb/Barber/Laundry/Tours" (cosmetic — audio is UK); (4) the English language button shows 🇺🇸 not 🇬🇧 (cosmetic).
