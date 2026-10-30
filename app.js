@@ -146,11 +146,13 @@ window.addEventListener("load", function () {
   if (vapi && vapi.on) {
     vapi.on("call-start", function () {
       inCall = true;
+      if (window.__setPulse) window.__setPulse(true);
       document.getElementById("gateBtn").textContent = "Hang up";
       document.getElementById("statusLine").textContent = "Connected — talk to Sofia now.";
     });
     vapi.on("call-end", function () {
       inCall = false;
+      if (window.__setPulse) window.__setPulse(false);
       document.getElementById("gateBtn").textContent = (T.gateBtn && T.gateBtn[uiLang(getLangCode())]) || "Start call with Sofia";
       document.getElementById("statusLine").textContent = "Call ended.";
     });
@@ -168,11 +170,12 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
   var biz = p.get('biz') || cfg.businessName;
   var wa = p.get('wa') || cfg.whatsapp;
   var THEMES = {
-    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c'],
-    gold: ['#f5b53d', '#ffe08a', '#0c0a07'],
-    violet: ['#a78bfa', '#c4b5fd', '#0b0a12'],
-    teal: ['#2dd4bf', '#5eead4', '#06100f'],
-    lime: ['#c6f24e', '#e9ff8a', '#0a0c06']
+    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c', '#ff5a3c'],
+    gold: ['#f5b53d', '#ffe08a', '#0c0a07', '#ffb15c'],
+    violet: ['#a78bfa', '#c4b5fd', '#0b0a12', '#c4b5fd'],
+    teal: ['#2dd4bf', '#5eead4', '#06100f', '#5eead4'],
+    lime: ['#c6f24e', '#e9ff8a', '#0a0c06', '#e9ff8a'],
+    mexico: ['#18B85C', '#7CE0A0', '#0a0a0c', '#E0243C']
   };
   var accent = p.get('accent') || cfg.accent;
   var theme = p.get('theme');
@@ -180,6 +183,7 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
   if (s) {
     document.documentElement.style.setProperty('--signal', s[0]);
     document.documentElement.style.setProperty('--signal-2', s[1]);
+    document.documentElement.style.setProperty('--pulse', s[3] || s[1]);
     if (s[2]) document.documentElement.style.setProperty('--bg', s[2]);
     document.body.style.background = 'radial-gradient(1200px 600px at 50% -10%, ' + hexA(s[0], .09) + ', transparent 60%), ' + (s[2] || '#0a0a0c');
   }
@@ -188,6 +192,17 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
     var btn = document.getElementById('waBtn');
     if (btn) btn.outerHTML = '<a class="wa-btn" href="https://wa.me/' + wa.replace(/[^0-9]/g, '') + '" target="_blank" rel="noopener">' + btn.innerHTML + '</a>';
   }
+})();
+
+(function pulseCtl() {
+  var audioN = 0, callOn = false;
+  window.__setPulse = function (on) { callOn = !!on; refresh(); };
+  function refresh() { document.body.classList.toggle('pulsing', audioN > 0 || callOn); }
+  document.querySelectorAll('audio').forEach(function (a) {
+    a.addEventListener('play', function () { audioN++; refresh(); });
+    a.addEventListener('pause', function () { audioN = Math.max(0, audioN - 1); refresh(); });
+    a.addEventListener('ended', function () { audioN = Math.max(0, audioN - 1); refresh(); });
+  });
 })();
 
 /* === Custom waveform audio players === */
