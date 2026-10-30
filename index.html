@@ -31,32 +31,6 @@
     </div>
   </div>
 
-  <section class="gate">
-    <h3 data-i18n="gateH">Talk to Sofia live</h3>
-    <form id="gateForm" class="gate-form" autocomplete="off">
-      <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
-      <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
-      <label class="consent"><input id="gateConsent" type="checkbox"> <span data-i18n="gateConsent">I agree to talk to an AI assistant</span></label>
-      <button type="submit" class="talk-btn" id="gateBtn" data-i18n="gateBtn">Start call with Sofia</button>
-    </form>
-    <div class="status-line" id="statusLine"></div>
-  </section>
-
-  <section class="callback">
-    <h3 data-i18n="callbackH">Prefer we call you? Leave your number</h3>
-    <form id="cbForm" class="cb-form" autocomplete="off">
-      <input id="cbName" type="text" data-i18n-ph="cbNamePh" placeholder="Your name (optional)">
-      <input id="cbPhone" type="tel" data-i18n-ph="cbPhonePh" placeholder="Your number">
-      <select id="cbIntent">
-        <option value="call-back" data-i18n="cbOptBack">Call me back</option>
-        <option value="boss" data-i18n="cbOptBoss">Speak to the boss</option>
-        <option value="other" data-i18n="cbOptOther">Other</option>
-      </select>
-      <button type="submit" class="talk-btn" id="cbBtn" data-i18n="cbBtn">Send my number</button>
-    </form>
-    <div class="status-line" id="cbStatus"></div>
-  </section>
-
   <section class="calls-demo">
     <h3 data-i18n="callsH">Hear Sofia handle real customer calls</h3>
     <p class="calls-note" data-i18n="callsNote">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
@@ -147,6 +121,32 @@
       </div>
     </div>
   </div>
+
+  <section class="gate">
+    <h3 data-i18n="gateH">Talk to Sofia live</h3>
+    <form id="gateForm" class="gate-form" autocomplete="off">
+      <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
+      <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
+      <label class="consent"><input id="gateConsent" type="checkbox"> <span data-i18n="gateConsent">I agree to talk to an AI assistant</span></label>
+      <button type="submit" class="talk-btn" id="gateBtn" data-i18n="gateBtn">Start call with Sofia</button>
+    </form>
+    <div class="status-line" id="statusLine"></div>
+  </section>
+
+  <section class="callback">
+    <h3 data-i18n="callbackH">Prefer we call you? Leave your number</h3>
+    <form id="cbForm" class="cb-form" autocomplete="off">
+      <input id="cbName" type="text" data-i18n-ph="cbNamePh" placeholder="Your name (optional)">
+      <input id="cbPhone" type="tel" data-i18n-ph="cbPhonePh" placeholder="Your number">
+      <select id="cbIntent">
+        <option value="call-back" data-i18n="cbOptBack">Call me back</option>
+        <option value="boss" data-i18n="cbOptBoss">Speak to the boss</option>
+        <option value="other" data-i18n="cbOptOther">Other</option>
+      </select>
+      <button type="submit" class="talk-btn" id="cbBtn" data-i18n="cbBtn">Send my number</button>
+    </form>
+    <div class="status-line" id="cbStatus"></div>
+  </section>
 
   <footer data-i18n="footer">A demo by Yan — Puerto Morelos, Quintana Roo.</footer>
   <div class="biz-contact"><button class="wa-btn" id="waBtn" type="button" aria-disabled="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.7-.8L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg> WhatsApp</button></div>
