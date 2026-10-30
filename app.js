@@ -68,7 +68,7 @@ function saveLead(lead) {
   if (LEAD_ENDPOINT) {
     fetch(LEAD_ENDPOINT, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify(lead)
     }).catch(function () {});
   }
