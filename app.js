@@ -1,5 +1,6 @@
 const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
 const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1";
+const UK_ASSISTANT_ID = "6933946a-8b14-4881-9725-3e4505d3a1eb";
 // Optional: point this at a form backend (Formspree / Apps Script / etc.) to actually deliver leads to you.
 const LEAD_ENDPOINT = "https://formspree.io/f/xaeebgrz";
 
@@ -34,8 +35,9 @@ function setLang(code) {
     const v = T[k] && T[k][uiLang(code)];
     if (v !== undefined) el.placeholder = v;
   });
+  var AUDIO_BASE = location.pathname.indexOf("uk.html") >= 0 ? "./audio-uk/" : "./audio/";
   const pa = document.getElementById("pitchAudio");
-  if (pa) pa.src = "./audio/pitch-" + code + ".mp3";
+  if (pa) pa.src = AUDIO_BASE + "pitch-" + code + ".mp3";
   const pf = document.getElementById("pitchFlag");
   const lang = LANGS.find(function (l) { return l.code === code; });
   if (pf && lang) pf.textContent = lang.flag;
@@ -82,7 +84,7 @@ function renderLeads() {
     if (!all.length) { el.textContent = "(none yet)"; return; }
     el.textContent = all.map(function (l) {
       const t = new Date(l.t).toLocaleString();
-      return "[" + l.type + "] " + (l.name || "-") + " | " + (l.phone || "-") +
+      return "[" + l.type + "] " + (l.region || "-") + " | " + (l.name || "-") + " | " + (l.phone || "-") +
              " | " + (l.intent || "") + " | " + l.lang + " | " + t;
     }).join("\n");
   } catch (e) { el.textContent = "(error)"; }
@@ -91,12 +93,14 @@ renderLeads();
 
 let vapi = null, inCall = false;
 function getLangCode() { try { return localStorage.getItem("sofia_lang") || "en"; } catch (e) { return "en"; } }
+var REGION = location.pathname.indexOf("uk.html") >= 0 ? "UK" : "MX";
+function assistantId() { return location.pathname.indexOf("uk.html") >= 0 ? UK_ASSISTANT_ID : VAPI_ASSISTANT_ID; }
 
 function startCall() {
   const status = document.getElementById("statusLine");
   if (!vapi) { status.textContent = "Voice SDK did not load."; return; }
   status.textContent = "Connecting...";
-  vapi.start(VAPI_ASSISTANT_ID).catch(function (e) {
+  vapi.start(assistantId()).catch(function (e) {
     console.error(e);
     status.textContent = "Could not connect. Check microphone permissions.";
   });
@@ -112,7 +116,7 @@ document.getElementById("gateForm").addEventListener("submit", function (e) {
   const status = document.getElementById("statusLine");
   if (!name || !phone) { status.textContent = "Please enter your name and number."; return; }
   if (!consent) { status.textContent = "Please tick the consent box to talk to Sofia."; return; }
-  saveLead({ type: "talk", name: name, phone: phone, lang: getLangCode(), consent: true, t: new Date().toISOString() });
+  saveLead({ type: "talk", name: name, phone: phone, lang: getLangCode(), region: REGION, consent: true, t: new Date().toISOString() });
   startCall();
 });
 
@@ -123,7 +127,7 @@ document.getElementById("cbForm").addEventListener("submit", function (e) {
   const intent = document.getElementById("cbIntent").value;
   const status = document.getElementById("cbStatus");
   if (!phone) { status.textContent = "Please enter a number."; return; }
-  saveLead({ type: "callback", name: name || "-", phone: phone, intent: intent, lang: getLangCode(), t: new Date().toISOString() });
+  saveLead({ type: "callback", name: name || "-", phone: phone, intent: intent, lang: getLangCode(), region: REGION, t: new Date().toISOString() });
   status.textContent = (T.cbThanks && T.cbThanks[uiLang(getLangCode())]) || "Got it — we'll be in touch.";
   e.target.reset();
 });
@@ -133,7 +137,7 @@ window.addEventListener("load", function () {
   try {
     vapi = window.vapiSDK.run({
       apiKey: VAPI_PUBLIC_KEY,
-      assistant: VAPI_ASSISTANT_ID,
+      assistant: assistantId(),
       config: {
         position: "bottom-right",
         offset: "24px",
