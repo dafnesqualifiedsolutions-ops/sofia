@@ -185,8 +185,8 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
   }
   if (biz && biz !== 'Your Business') document.title = biz + ' · Sofia AI';
   if (wa) {
-    var el = document.getElementById('bizContact');
-    if (el) el.innerHTML = 'WhatsApp <a href="https://wa.me/' + wa.replace(/[^0-9]/g, '') + '" target="_blank" rel="noopener">' + wa + '</a>';
+    var btn = document.getElementById('waBtn');
+    if (btn) btn.outerHTML = '<a class="wa-btn" href="https://wa.me/' + wa.replace(/[^0-9]/g, '') + '" target="_blank" rel="noopener">' + btn.innerHTML + '</a>';
   }
 })();
 

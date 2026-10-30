@@ -3,6 +3,6 @@
 //   ?biz=Luigis%20Pizzeria&wa=529987654321&accent=%23ff5a3c&theme=gold
 window.SOFIA_CONFIG = {
   businessName: "Your Business",
-  whatsapp: "529987513548",
+  whatsapp: "",
   accent: ""
 };
