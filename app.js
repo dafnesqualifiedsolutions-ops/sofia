@@ -160,6 +160,36 @@ window.addEventListener("load", function () {
 
 try { setLang(getLangCode()); } catch (e) { setLang("en"); }
 
+/* === Per-client branding (config.js + ?biz / ?wa / ?accent / ?theme) === */
+(function applyBrand() {
+  function hexA(h, a) { var n = parseInt(h.slice(1), 16); return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')'; }
+  var cfg = window.SOFIA_CONFIG || {};
+  var p = new URLSearchParams(location.search);
+  var biz = p.get('biz') || cfg.businessName;
+  var wa = p.get('wa') || cfg.whatsapp;
+  var THEMES = {
+    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c'],
+    gold: ['#f5b53d', '#ffe08a', '#0c0a07'],
+    violet: ['#a78bfa', '#c4b5fd', '#0b0a12'],
+    teal: ['#2dd4bf', '#5eead4', '#06100f'],
+    lime: ['#c6f24e', '#e9ff8a', '#0a0c06']
+  };
+  var accent = p.get('accent') || cfg.accent;
+  var theme = p.get('theme');
+  var s = (theme && THEMES[theme]) ? THEMES[theme] : (accent ? [accent, accent, ''] : null);
+  if (s) {
+    document.documentElement.style.setProperty('--signal', s[0]);
+    document.documentElement.style.setProperty('--signal-2', s[1]);
+    if (s[2]) document.documentElement.style.setProperty('--bg', s[2]);
+    document.body.style.background = 'radial-gradient(1200px 600px at 50% -10%, ' + hexA(s[0], .09) + ', transparent 60%), ' + (s[2] || '#0a0a0c');
+  }
+  if (biz && biz !== 'Your Business') document.title = biz + ' · Sofia AI';
+  if (wa) {
+    var el = document.getElementById('bizContact');
+    if (el) el.innerHTML = 'WhatsApp <a href="https://wa.me/' + wa.replace(/[^0-9]/g, '') + '" target="_blank" rel="noopener">' + wa + '</a>';
+  }
+})();
+
 /* === Custom waveform audio players === */
 (function () {
   var COUNT = 32;
