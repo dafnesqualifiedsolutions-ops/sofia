@@ -22,7 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 24px 16px 60px;
+    padding: 24px 16px 80px;
   }
   .lang-toggle {
     align-self: flex-end;
@@ -90,6 +90,7 @@
     font-size: 0.9rem;
     margin-bottom: 40px;
     min-height: 20px;
+    text-align: center;
   }
   .cards {
     display: grid;
@@ -158,21 +159,6 @@
     flex-shrink: 0;
   }
   .step p { color: var(--muted); font-size: 0.95rem; line-height: 1.4; }
-  footer {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: 20px;
-    opacity: 0.85;
-  }
-  #vapi-widget-container {
-    position: fixed;
-    bottom: 0; right: 0;
-    width: 0; height: 0;
-    overflow: hidden;
-  }
-  .hidden { display: none; }
-
   .pricing { max-width: 720px; width: 100%; margin-bottom: 40px; text-align: center; }
   .pricing h2 { margin-bottom: 20px; color: var(--text); }
   .price-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
@@ -181,7 +167,15 @@
   .price { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
   .price span { font-size: 1rem; color: var(--muted); font-weight: 600; }
   .price-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
-
+  footer {
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.85;
+  }
+  /* hide the widget's own floating button; we use our own */
+  .vapi-btn { display: none !important; }
 </style>
 </head>
 <body>
@@ -192,138 +186,159 @@
   </div>
 
   <header>
-    <h1 data-en='Never miss a call again — in <span>English or Spanish</span>.'
-        data-es='Nunca pierdas una llamada — en <span>inglés o español</span>.'>'
-    
-    <p data-en="Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost."
-       data-es="Sofia es una asistente telefónica de IA bilingüe para negocios locales en la Riviera Maya. Contesta llamadas, agenda citas y ayuda a turistas — las 24 horas, por una tarifa mensual baja y fija.">"
-    
+    <h1 data-en="Never miss a call again — in <span>English or Spanish</span>." data-es="Nunca pierdas una llamada — en <span>inglés o español</span>.">Never miss a call again — in <span>English or Spanish</span>.</h1>
+    <p data-en="Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost." data-es="Sofia es una asistente telefónica de IA bilingüe para negocios locales en la Riviera Maya. Contesta llamadas, agenda citas y ayuda a turistas — las 24 horas, por una tarifa mensual baja y fija.">Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
   </header>
 
   <button class="talk-btn" id="talkBtn" onclick="toggleCall()">
     <svg class="mic-icon" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>
-    <span id="talkBtnText" data-en="Talk to Sofia now" data-es="Habla con Sofia ahora"></span>
+    <span id="talkBtnText" data-en="Talk to Sofia now" data-es="Habla con Sofia ahora">Talk to Sofia now</span>
   </button>
-  <div class="status-line" id="statusLine" data-en="Click to start a free voice call — right in your browser, no phone number needed."
-       data-es="Haz clic para iniciar una llamada de voz gratuita — directo en tu navegador, sin necesidad de número de teléfono.">
-  </div>
+  <div class="status-line" id="statusLine" data-en="Click to start a free voice call — right in your browser, no phone number needed." data-es="Haz clic para iniciar una llamada de voz gratuita — directo en tu navegador, sin necesidad de número de teléfono.">Click to start a free voice call — right in your browser, no phone number needed.</div>
 
   <div class="cards">
     <div class="card">
-      <h3 data-en="🏠 Real Estate &amp; Airbnb" data-es="🏠 Bienes Raíces y Airbnb">"
-      <p data-en="Answers inquiries, checks availability, books viewings and check-ins in both languages." data-es="Responde consultas, revisa disponibilidad, agenda visitas y check-ins en ambos idiomas.">"
+      <h3 data-en="🏠 Real Estate &amp; Airbnb" data-es="🏠 Bienes Raíces y Airbnb">🏠 Real Estate &amp; Airbnb</h3>
+      <p data-en="Answers inquiries, checks availability, books viewings and check-ins in both languages." data-es="Responde consultas, revisa disponibilidad, agenda visitas y check-ins en ambos idiomas.">Answers inquiries, checks availability, books viewings and check-ins in both languages.</p>
     </div>
     <div class="card">
-      <h3 data-en="💈 Barber Shops" data-es="💈 Barberías">"
-      <p data-en="Books appointments and answers questions from expats who don't speak Spanish." data-es="Agenda citas y responde preguntas de expatriados que no hablan español.">"
+      <h3 data-en="💈 Barber Shops" data-es="💈 Barberías">💈 Barber Shops</h3>
+      <p data-en="Books appointments and answers questions from expats who don't speak Spanish." data-es="Agenda citas y responde preguntas de expatriados que no hablan español.">Books appointments and answers questions from expats who don't speak Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-en="🧺 Lavanderías" data-es="🧺 Lavanderías">"
-      <p data-en="Takes pickup/drop-off requests and order status calls, in English or Spanish." data-es="Recibe solicitudes de recogida/entrega y llamadas de estado de pedidos.">"
+      <h3 data-en="🧺 Lavanderías" data-es="🧺 Lavanderías">🧺 Lavanderías</h3>
+      <p data-en="Takes pickup/drop-off requests and order status calls, in English or Spanish." data-es="Recibe solicitudes de recogida/entrega y llamadas de estado de pedidos, en inglés o español.">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-en="🛥️ Tours &amp; Excursions" data-es="🛥️ Tours y Excursiones">"
-      <p data-en="Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests." data-es="Sofia también puede recomendar chárteres de yate, natación con delfines y tours locales a tus huéspedes.">"
+      <h3 data-en="🛥️ Tours &amp; Excursions" data-es="🛥️ Tours y Excursiones">🛥️ Tours &amp; Excursions</h3>
+      <p data-en="Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests." data-es="Sofia también puede recomendar chárteres de yate, natación con delfines y tours locales a tus huéspedes.">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
     </div>
   </div>
 
   <div class="how-it-works">
-    <h2 data-en="How it works" data-es="Cómo funciona">"
+    <h2 data-en="How it works" data-es="Cómo funciona">How it works</h2>
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
-        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">"
+        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">We set Sofia up with your business info — hours, pricing, services.</p>
       </div>
       <div class="step">
         <div class="num">2</div>
-        <p data-en="Your customers call the same number they always have — Sofia answers instantly, in their language." data-es="Tus clientes llaman al mismo número de siempre — Sofia responde al instante, en su idioma.">"
+        <p data-en="Your customers call the same number they always have — Sofia answers instantly, in their language." data-es="Tus clientes llaman al mismo número de siempre — Sofia responde al instante, en su idioma.">Your customers call the same number they always have — Sofia answers instantly, in their language.</p>
       </div>
       <div class="step">
         <div class="num">3</div>
-        <p data-en="You get the booking details sent straight to you. No missed calls, no language barrier." data-es="Recibes los detalles de la reserva directamente. Sin llamadas perdidas, sin barrera de idioma.">"
+        <p data-en="You get the booking details sent straight to you. No missed calls, no language barrier." data-es="Recibes los detalles de la reserva directamente. Sin llamadas perdidas, sin barrera de idioma.">You get the booking details sent straight to you. No missed calls, no language barrier.</p>
       </div>
     </div>
   </div>
 
-    <div class="pricing">
-    <h2 data-en="Simple, flat pricing" data-es="Precio fijo y simple">"
+  <div class="pricing">
+    <h2 data-en="Simple, flat pricing" data-es="Precio fijo y simple">Simple, flat pricing</h2>
     <div class="price-row">
       <div class="price-card">
-        <h3 data-en="One-time setup" data-es="Configuración única">"
+        <h3 data-en="One-time setup" data-es="Configuración única">One-time setup</h3>
         <div class="price">$2,000 <span>MXN</span></div>
-        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">"
+        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">We set Sofia up with your business info — hours, pricing, services.</p>
       </div>
       <div class="price-card">
-        <h3 data-en="Monthly" data-es="Mensual">"
+        <h3 data-en="Monthly" data-es="Mensual">Monthly</h3>
         <div class="price">$2,000 <span>MXN/mo</span></div>
-        <p data-en="Flat rate. 24/7 bilingual reception — no per-call fees, ever." data-es="Tarifa fija. Recepción bilingüe 24/7 — sin costo por llamada, nunca.">"
+        <p data-en="Flat rate. 24/7 bilingual reception — no per-call fees, ever." data-es="Tarifa fija. Recepción bilingüe 24/7 — sin costo por llamada, nunca.">Flat rate. 24/7 bilingual reception — no per-call fees, ever.</p>
       </div>
     </div>
   </div>
 
+  <footer data-en="A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live." data-es="Una demostración de Yan — Puerto Morelos, Quintana Roo. Haz clic en 'Habla con Sofia' arriba para probarlo en vivo.">A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live.</footer>
 
-  <footer data-en="A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live."
-          data-es="Una demostración de Yan — Puerto Morelos, Quintana Roo. Haz clic en 'Habla con Sofia' arriba para probarlo en vivo.">"
-  
+  <!-- Self-hosted Vapi browser widget (same origin, no external CDN) -->
+  <script src="./vapi-widget.js" defer></script>
+  <script>
+    const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
+    const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1";
+    let vapi = null;
+    let inCall = false;
 
-<script defer src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.min.js"></script>
-<script>
-  // ====== CONFIG: fill these in ======
-  const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
-  const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1"; // Sofia - Master Sales Caller (default demo)
-  // ====================================
+    function getLang() {
+      try { return localStorage.getItem('sofia_lang') || 'en'; } catch(e) { return 'en'; }
+    }
+    function setLang(lang) {
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const t = el.getAttribute('data-' + lang);
+        if (t !== null) el.innerHTML = t;
+      });
+      const bEn = document.getElementById('btn-en');
+      const bEs = document.getElementById('btn-es');
+      if (bEn) bEn.classList.toggle('active', lang === 'en');
+      if (bEs) bEs.classList.toggle('active', lang === 'es');
+      try { localStorage.setItem('sofia_lang', lang); } catch(e) {}
+    }
 
-  let vapi = null;
-  let inCall = false;
-
-  function setLang(lang) {
-    document.querySelectorAll('[data-en]').forEach(el => {
-      el.innerHTML = el.getAttribute('data-' + lang);
-    });
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-    localStorage.setItem('sofia_lang', lang);
-  }
-
-  async function toggleCall() {
-    const btn = document.getElementById('talkBtn');
-    const status = document.getElementById('statusLine');
-    const lang = localStorage.getItem('sofia_lang') || 'en';
-
-    if (!inCall) {
+    async function toggleCall() {
+      const btn = document.getElementById('talkBtn');
+      const status = document.getElementById('statusLine');
+      const lang = getLang();
       if (!vapi) {
-        vapi = new Vapi(VAPI_PUBLIC_KEY);
+        status.textContent = (lang === 'es') ? 'El sistema de voz no cargó.' : 'Voice SDK did not load.';
+        return;
+      }
+      if (!inCall) {
+        status.textContent = (lang === 'es') ? 'Conectando...' : 'Connecting...';
+        try { await vapi.start(VAPI_ASSISTANT_ID); }
+        catch (e) {
+          console.error(e);
+          status.textContent = (lang === 'es') ? 'No se pudo conectar. Revisa permisos de micrófono.' : 'Could not connect. Check microphone permissions.';
+        }
+      } else {
+        vapi.stop();
+      }
+    }
+
+    window.addEventListener('load', function () {
+      if (!window.vapiSDK) {
+        document.getElementById('statusLine').textContent = 'Voice SDK failed to load.';
+        return;
+      }
+      try {
+        vapi = window.vapiSDK.run({
+          apiKey: VAPI_PUBLIC_KEY,
+          assistant: VAPI_ASSISTANT_ID,
+          config: {
+            position: 'bottom-right',
+            offset: '24px',
+            idle: { type: 'round', color: 'rgb(45,212,191)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone.svg' },
+            loading: { type: 'round', color: 'rgb(245,158,11)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg' },
+            active: { type: 'round', color: 'rgb(239,68,68)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg' }
+          }
+        });
+      } catch (e) {
+        console.error('vapiSDK.run failed', e);
+        document.getElementById('statusLine').textContent = 'Voice SDK failed to initialise.';
+        return;
+      }
+      const lang = getLang();
+      if (vapi && vapi.on) {
         vapi.on('call-start', () => {
           inCall = true;
-          btn.classList.add('calling');
+          document.getElementById('talkBtn').classList.add('calling');
           document.getElementById('talkBtnText').textContent = (lang === 'es') ? 'Colgar' : 'Hang up';
-          status.textContent = (lang === 'es') ? 'Conectado — habla con Sofia ahora.' : 'Connected — talk to Sofia now.';
+          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Conectado — habla con Sofia ahora.' : 'Connected — talk to Sofia now.';
         });
         vapi.on('call-end', () => {
           inCall = false;
-          btn.classList.remove('calling');
+          document.getElementById('talkBtn').classList.remove('calling');
           document.getElementById('talkBtnText').textContent = (lang === 'es') ? 'Habla con Sofia ahora' : 'Talk to Sofia now';
-          status.textContent = (lang === 'es') ? 'Llamada finalizada. Haz clic para intentarlo de nuevo.' : 'Call ended. Click to try again.';
+          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Llamada finalizada. Haz clic para intentarlo de nuevo.' : 'Call ended. Click to try again.';
         });
         vapi.on('error', (e) => {
           console.error('Vapi error', e);
-          status.textContent = (lang === 'es') ? 'Error de conexión — revisa el micrófono del navegador.' : 'Connection error — check your browser microphone permissions.';
+          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Error de conexión — revisa el micrófono.' : 'Connection error — check your browser microphone permissions.';
         });
       }
-      status.textContent = (lang === 'es') ? 'Conectando...' : 'Connecting...';
-      try {
-        await vapi.start(VAPI_ASSISTANT_ID);
-      } catch (e) {
-        console.error(e);
-        status.textContent = (lang === 'es') ? 'No se pudo conectar. Revisa permisos de micrófono.' : 'Could not connect. Check microphone permissions.';
-      }
-    } else {
-      vapi.stop();
-    }
-  }
+    });
 
-  // restore language preference
-  try { setLang(localStorage.getItem('sofia_lang') || 'en'); } catch(e) { setLang('en'); }
-</script>
+    // initial language (safe even if JS fails later)
+    try { setLang(getLang()); } catch(e) { setLang('en'); }
+  </script>
 </body>
 </html>
