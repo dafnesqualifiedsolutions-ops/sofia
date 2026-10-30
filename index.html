@@ -176,6 +176,20 @@
   }
   /* hide the widget's own floating button; we use our own */
   .vapi-btn { display: none !important; }
+
+  .listen { text-align: center; max-width: 640px; width: 100%; margin: 8px 0 24px; }
+  .listen h3 { color: var(--text); margin-bottom: 16px; font-size: 1.1rem; }
+  .audio-row { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 10px 0; }
+  .audio-row span { font-size: 1.5rem; }
+  audio { width: min(360px, 90%); height: 40px; }
+  .talk-btn.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    box-shadow: none;
+    margin-top: 0;
+  }
+  .talk-btn.secondary:hover { background: rgba(45,212,191,0.12); transform: translateY(-1px); box-shadow: none; }
 </style>
 </head>
 <body>
@@ -190,11 +204,23 @@
     <p data-en="Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost." data-es="Sofia es una asistente telefónica de IA bilingüe para negocios locales en la Riviera Maya. Contesta llamadas, agenda citas y ayuda a turistas — las 24 horas, por una tarifa mensual baja y fija.">Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
   </header>
 
-  <button class="talk-btn" id="talkBtn" onclick="toggleCall()">
+  <div class="listen">
+    <h3 data-en="Hear Sofia pitch your business" data-es="Escucha a Sofia presentar tu negocio">Hear Sofia pitch your business</h3>
+    <div class="audio-row">
+      <span title="Español">🇲🇽</span>
+      <audio controls preload="none" src="./audio/sofia-pitch-es.mp3"></audio>
+    </div>
+    <div class="audio-row">
+      <span title="English">🇺🇸</span>
+      <audio controls preload="none" src="./audio/sofia-pitch-en.mp3"></audio>
+    </div>
+  </div>
+
+  <button class="talk-btn secondary" id="talkBtn" onclick="toggleCall()">
     <svg class="mic-icon" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>
-    <span id="talkBtnText" data-en="Talk to Sofia now" data-es="Habla con Sofia ahora">Talk to Sofia now</span>
+    <span id="talkBtnText" data-en="Talk to Sofia live" data-es="Hablar con Sofia en vivo">Talk to Sofia live</span>
   </button>
-  <div class="status-line" id="statusLine" data-en="Click to start a free voice call — right in your browser, no phone number needed." data-es="Haz clic para iniciar una llamada de voz gratuita — directo en tu navegador, sin necesidad de número de teléfono.">Click to start a free voice call — right in your browser, no phone number needed.</div>
+  <div class="status-line" id="statusLine" data-en="The sample above is free. The live button connects you to Sofia (uses call minutes)." data-es="La muestra de arriba es gratis. El botón en vivo te conecta con Sofia (usa minutos de llamada).">The sample above is free. The live button connects you to Sofia (uses call minutes).</div>
 
   <div class="cards">
     <div class="card">
