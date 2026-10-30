@@ -238,10 +238,10 @@
           data-es="Una demostración de Yan — Puerto Morelos, Quintana Roo. Haz clic en 'Habla con Sofia' arriba para probarlo en vivo.">
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.min.js"></script>
 <script>
   // ====== CONFIG: fill these in ======
-  const VAPI_PUBLIC_KEY = "67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
+  const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
   const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1"; // Sofia - Master Sales Caller (default demo)
   // ====================================
 
@@ -264,7 +264,7 @@
 
     if (!inCall) {
       if (!vapi) {
-        vapi = new window.Vapi(VAPI_PUBLIC_KEY);
+        vapi = new Vapi(VAPI_PUBLIC_KEY);
         vapi.on('call-start', () => {
           inCall = true;
           btn.classList.add('calling');
