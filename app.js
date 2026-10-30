@@ -1,7 +1,7 @@
 const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
 const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1";
 // Optional: point this at a form backend (Formspree / Apps Script / etc.) to actually deliver leads to you.
-const LEAD_ENDPOINT = "";
+const LEAD_ENDPOINT = "https://formspree.io/f/xaeebgrz";
 
 const LANGS = [
   { code: "en",   flag: "🇺🇸", label: "English" },
