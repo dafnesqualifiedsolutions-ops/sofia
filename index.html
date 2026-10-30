@@ -3,278 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sofia — Bilingual AI Phone Assistant | Riviera Maya</title>
-<style>
-  :root {
-    --bg: #0b1220;
-    --card: #121b2e;
-    --accent: #2dd4bf;
-    --accent2: #f59e0b;
-    --text: #e5e7eb;
-    --muted: #94a3b8;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(160deg, var(--bg), #0f1729);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 24px 16px 80px;
-  }
-  .lang-toggle {
-    align-self: flex-end;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 8px;
-  }
-  .lang-toggle button {
-    background: var(--card);
-    color: var(--muted);
-    border: 1px solid #1e293b;
-    padding: 6px 12px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    line-height: 1;
-  }
-  .lang-toggle button.active {
-    background: var(--accent);
-    color: #0b1220;
-    border-color: var(--accent);
-    font-weight: 600;
-  }
-  header {
-    text-align: center;
-    max-width: 640px;
-    margin-bottom: 32px;
-  }
-  header h1 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    line-height: 1.2;
-  }
-  header h1 span { color: var(--accent); }
-  header p {
-    color: var(--muted);
-    font-size: 1.05rem;
-    line-height: 1.5;
-  }
-  .talk-btn {
-    background: linear-gradient(135deg, var(--accent), #14b8a6);
-    color: #05221d;
-    border: none;
-    border-radius: 50px;
-    padding: 20px 48px;
-    font-size: 1.25rem;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(45,212,191,0.35);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 24px 0 8px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-  }
-  .talk-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(45,212,191,0.45); }
-  .talk-btn:active { transform: translateY(0); }
-  .talk-btn.calling {
-    background: linear-gradient(135deg, var(--accent2), #d97706);
-    box-shadow: 0 10px 30px rgba(245,158,11,0.35);
-  }
-  .mic-icon { width: 22px; height: 22px; fill: currentColor; }
-  .status-line {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 40px;
-    min-height: 20px;
-    text-align: center;
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    max-width: 1000px;
-    width: 100%;
-    margin-bottom: 40px;
-  }
-  @media (max-width: 800px) {
-    .cards { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 480px) {
-    .cards { grid-template-columns: 1fr; }
-  }
-  .card {
-    background: var(--card);
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    padding: 22px;
-  }
-  .card h3 {
-    color: var(--accent);
-    font-size: 1.05rem;
-    margin-bottom: 8px;
-  }
-  .card p {
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.45;
-  }
-  .how-it-works {
-    max-width: 700px;
-    width: 100%;
-    margin-bottom: 40px;
-  }
-  .how-it-works h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--text);
-  }
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .step {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    background: var(--card);
-    border-radius: 12px;
-    padding: 16px 20px;
-    border: 1px solid #1e293b;
-  }
-  .step .num {
-    background: var(--accent);
-    color: #05221d;
-    font-weight: 700;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .step p { color: var(--muted); font-size: 0.95rem; line-height: 1.4; }
-  .pricing { max-width: 720px; width: 100%; margin-bottom: 40px; text-align: center; }
-  .pricing h2 { margin-bottom: 20px; color: var(--text); }
-  .price-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .price-card { background: var(--card); border: 1px solid #1e293b; border-radius: 16px; padding: 24px; flex: 1; min-width: 220px; }
-  .price-card h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; }
-  .price { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
-  .price span { font-size: 1rem; color: var(--muted); font-weight: 600; }
-  .price-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.45; }
-  footer {
-    color: #cbd5e1;
-    font-size: 0.9rem;
-    text-align: center;
-    margin-top: 20px;
-    opacity: 0.85;
-  }
-  /* hide the widget's own floating button; we use our own */
-  .vapi-btn { display: none !important; }
-
-  .listen { text-align: center; max-width: 640px; width: 100%; margin: 8px 0 24px; }
-  .listen h3 { color: var(--text); margin-bottom: 16px; font-size: 1.1rem; }
-  .audio-row { display: flex; align-items: center; gap: 12px; justify-content: center; margin: 10px 0; }
-  .audio-row span { font-size: 1.5rem; }
-  audio { width: min(360px, 90%); height: 40px; }
-  .talk-btn.secondary {
-    background: transparent;
-    color: var(--accent);
-    border: 2px solid var(--accent);
-    box-shadow: none;
-    margin-top: 0;
-  }
-  .talk-btn.secondary:hover { background: rgba(45,212,191,0.12); transform: translateY(-1px); box-shadow: none; }
-
-  .calls-demo { text-align: center; max-width: 680px; width: 100%; margin: 8px 0 36px; }
-  .calls-demo h3 { color: var(--text); margin-bottom: 8px; font-size: 1.15rem; }
-  .calls-note { color: var(--muted); font-size: 0.9rem; line-height: 1.45; margin-bottom: 20px; }
-  .call-list { display: flex; flex-direction: column; gap: 14px; text-align: left; }
-  .call-item { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid #1e293b; border-radius: 12px; padding: 14px 16px; }
-  .call-flag { font-size: 1.6rem; flex-shrink: 0; line-height: 1; }
-  .call-meta { flex: 1; min-width: 0; }
-  .call-title { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
-  .call-sub { color: var(--muted); font-size: 0.82rem; line-height: 1.35; margin-top: 2px; }
-  .call-item audio { width: min(200px, 42%); height: 38px; flex-shrink: 0; }
-  @media (max-width: 480px) { .call-item { flex-wrap: wrap; } .call-item audio { width: 100%; } }
-</style>
+<title>Sofia — Multilingual AI Phone Assistant | Riviera Maya</title>
+<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-  <div class="lang-toggle">
-    <button id="btn-en" class="active" onclick="setLang('en')" aria-label="English" title="English">🇺🇸</button>
-    <button id="btn-es" onclick="setLang('es')" aria-label="Español" title="Español">🇲🇽</button>
-  </div>
+  <div id="langRow" class="lang-row"></div>
 
   <header>
-    <h1 data-en="Never miss a call again — in <span>English or Spanish</span>." data-es="Nunca pierdas una llamada — en <span>inglés o español</span>.">Never miss a call again — in <span>English or Spanish</span>.</h1>
-    <p data-en="Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost." data-es="Sofia es una asistente telefónica de IA bilingüe para negocios locales en la Riviera Maya. Contesta llamadas, agenda citas y ayuda a turistas — las 24 horas, por una tarifa mensual baja y fija.">Sofia is a bilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
+    <h1 data-i18n-html="h1">Never miss a call again.</h1>
+    <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
   </header>
 
   <div class="listen">
-    <h3 data-en="Hear Sofia pitch your business" data-es="Escucha a Sofia presentar tu negocio">Hear Sofia pitch your business</h3>
+    <h3 data-i18n="listenH">Hear Sofia introduce herself</h3>
     <div class="audio-row">
-      <span title="Español">🇲🇽</span>
-      <audio controls preload="none" src="./audio/sofia-pitch-es.mp3"></audio>
-    </div>
-    <div class="audio-row">
-      <span title="English">🇺🇸</span>
-      <audio controls preload="none" src="./audio/sofia-pitch-en.mp3"></audio>
+      <span id="pitchFlag">🇲🇽</span>
+      <audio id="pitchAudio" controls preload="none" src="./audio/pitch-es-MX.mp3"></audio>
     </div>
   </div>
 
-  <button class="talk-btn secondary" id="talkBtn" onclick="toggleCall()">
-    <svg class="mic-icon" viewBox="0 0 24 24"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2z"/></svg>
-    <span id="talkBtnText" data-en="Talk to Sofia live" data-es="Hablar con Sofia en vivo">Talk to Sofia live</span>
-  </button>
-  <div class="status-line" id="statusLine" data-en="The sample above is free. The live button connects you to Sofia (uses call minutes)." data-es="La muestra de arriba es gratis. El botón en vivo te conecta con Sofia (usa minutos de llamada).">The sample above is free. The live button connects you to Sofia (uses call minutes).</div>
+  <section class="gate">
+    <h3 data-i18n="gateH">Talk to Sofia live</h3>
+    <form id="gateForm" class="gate-form" autocomplete="off">
+      <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
+      <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
+      <label class="consent"><input id="gateConsent" type="checkbox"> <span data-i18n="gateConsent">I agree to talk to an AI assistant</span></label>
+      <button type="submit" class="talk-btn" id="gateBtn" data-i18n="gateBtn">Start call with Sofia</button>
+    </form>
+    <div class="status-line" id="statusLine"></div>
+  </section>
+
+  <section class="callback">
+    <h3 data-i18n="callbackH">Prefer we call you? Leave your number</h3>
+    <form id="cbForm" class="cb-form" autocomplete="off">
+      <input id="cbName" type="text" data-i18n-ph="cbNamePh" placeholder="Your name (optional)">
+      <input id="cbPhone" type="tel" data-i18n-ph="cbPhonePh" placeholder="Your number">
+      <select id="cbIntent">
+        <option value="call-back" data-i18n="cbOptBack">Call me back</option>
+        <option value="boss" data-i18n="cbOptBoss">Speak to the boss</option>
+        <option value="other" data-i18n="cbOptOther">Other</option>
+      </select>
+      <button type="submit" class="talk-btn" id="cbBtn" data-i18n="cbBtn">Send my number</button>
+    </form>
+    <div class="status-line" id="cbStatus"></div>
+  </section>
 
   <section class="calls-demo">
-    <h3 data-en="Hear Sofia handle real customer calls" data-es="Escucha a Sofia atender llamadas reales de clientes">Hear Sofia handle real customer calls</h3>
-    <p class="calls-note" data-en="Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call." data-es="Cinco llamadas de práctica — nadie llama de verdad. Clientes distintos, preguntas reales, y uno cambia de idioma a mitad de llamada.">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
+    <h3 data-i18n="callsH">Hear Sofia handle real customer calls</h3>
+    <p class="calls-note" data-i18n="callsNote">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
     <div class="call-list">
       <div class="call-item">
         <span class="call-flag">🇺🇸</span>
         <div class="call-meta">
-          <div class="call-title" data-en="🏠 Airbnb — English tourist" data-es="🏠 Airbnb — turista en inglés">🏠 Airbnb — English tourist</div>
-          <div class="call-sub" data-en="Unusual ask: can he bring his service dog (a golden retriever)?" data-es="Pregunta inusual: ¿puede llevar a su perro de servicio (un golden retriever)?">Unusual ask: can he bring his service dog (a golden retriever)?</div>
+          <div class="call-title" data-i18n="call1t">🏠 Airbnb — English tourist</div>
+          <div class="call-sub" data-i18n="call1s">Unusual ask: can he bring his service dog (a golden retriever)?</div>
         </div>
         <audio controls preload="none" src="./audio/call-airbnb.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇲🇽</span>
         <div class="call-meta">
-          <div class="call-title" data-en="💈 Barber shop — local Spanish customer" data-es="💈 Barbería — cliente local en español">💈 Barber shop — local Spanish customer</div>
-          <div class="call-sub" data-en="Unusual ask: can he bring his 4-year-old nephew?" data-es="Pregunta inusual: ¿puede llevar a su sobrino de 4 años?">Unusual ask: can he bring his 4-year-old nephew?</div>
+          <div class="call-title" data-i18n="call2t">💈 Barber shop — local Spanish customer</div>
+          <div class="call-sub" data-i18n="call2s">Unusual ask: can he bring his 4-year-old nephew?</div>
         </div>
         <audio controls preload="none" src="./audio/call-barber.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇺🇸</span>
         <div class="call-meta">
-          <div class="call-title" data-en="🧺 Laundry — English expat" data-es="🧺 Lavandería — expatriado en inglés">🧺 Laundry — English expat</div>
-          <div class="call-sub" data-en="Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema" data-es="Pregunta inusual: edredón king size + detergente hipoalergénico por eczema de su hijo">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
+          <div class="call-title" data-i18n="call3t">🧺 Laundry — English expat</div>
+          <div class="call-sub" data-i18n="call3s">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
         </div>
         <audio controls preload="none" src="./audio/call-lavanderia.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇺🇸</span>
         <div class="call-meta">
-          <div class="call-title" data-en="🛥️ Tours — English tourist" data-es="🛥️ Tours — turista en inglés">🛥️ Tours — English tourist</div>
-          <div class="call-sub" data-en="Unusual ask: is the yacht wheelchair-accessible for his mom?" data-es="Pregunta inusual: ¿el yate es accesible para la silla de ruedas de su mamá?">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
+          <div class="call-title" data-i18n="call4t">🛥️ Tours — English tourist</div>
+          <div class="call-sub" data-i18n="call4s">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
         </div>
         <audio controls preload="none" src="./audio/call-tours.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🔁</span>
         <div class="call-meta">
-          <div class="call-title" data-en="🔁 Mid-call language switch" data-es="🔁 Cambio de idioma a mitad de llamada">🔁 Mid-call language switch</div>
-          <div class="call-sub" data-en="Customer starts in Spanish, switches to English, then back to Spanish" data-es="El cliente empieza en español, cambia a inglés y vuelve al español">Customer starts in Spanish, switches to English, then back to Spanish</div>
+          <div class="call-title" data-i18n="call5t">🔁 Mid-call language switch</div>
+          <div class="call-sub" data-i18n="call5s">Customer starts in Spanish, switches to English, then back to Spanish</div>
         </div>
         <audio controls preload="none" src="./audio/call-langswitch.mp3"></audio>
       </div>
@@ -283,147 +98,57 @@
 
   <div class="cards">
     <div class="card">
-      <h3 data-en="🏠 Real Estate &amp; Airbnb" data-es="🏠 Bienes Raíces y Airbnb">🏠 Real Estate &amp; Airbnb</h3>
-      <p data-en="Answers inquiries, checks availability, books viewings and check-ins in both languages." data-es="Responde consultas, revisa disponibilidad, agenda visitas y check-ins en ambos idiomas.">Answers inquiries, checks availability, books viewings and check-ins in both languages.</p>
+      <h3 data-i18n="card1t">🏠 Real Estate &amp; Airbnb</h3>
+      <p data-i18n="card1d">Answers inquiries, checks availability, books viewings and check-ins in the customer's language.</p>
     </div>
     <div class="card">
-      <h3 data-en="💈 Barber Shops" data-es="💈 Barberías">💈 Barber Shops</h3>
-      <p data-en="Books appointments and answers questions from expats who don't speak Spanish." data-es="Agenda citas y responde preguntas de expatriados que no hablan español.">Books appointments and answers questions from expats who don't speak Spanish.</p>
+      <h3 data-i18n="card2t">💈 Barber Shops</h3>
+      <p data-i18n="card2d">Books appointments and answers questions from expats who don't speak Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-en="🧺 Lavanderías" data-es="🧺 Lavanderías">🧺 Lavanderías</h3>
-      <p data-en="Takes pickup/drop-off requests and order status calls, in English or Spanish." data-es="Recibe solicitudes de recogida/entrega y llamadas de estado de pedidos, en inglés o español.">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
+      <h3 data-i18n="card3t">🧺 Laundromats</h3>
+      <p data-i18n="card3d">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-en="🛥️ Tours &amp; Excursions" data-es="🛥️ Tours y Excursiones">🛥️ Tours &amp; Excursions</h3>
-      <p data-en="Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests." data-es="Sofia también puede recomendar chárteres de yate, natación con delfines y tours locales a tus huéspedes.">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
+      <h3 data-i18n="card4t">🛥️ Tours &amp; Excursions</h3>
+      <p data-i18n="card4d">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
     </div>
   </div>
 
   <div class="how-it-works">
-    <h2 data-en="How it works" data-es="Cómo funciona">How it works</h2>
+    <h2 data-i18n="howH">How it works</h2>
     <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">We set Sofia up with your business info — hours, pricing, services.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
-        <p data-en="Your customers call the same number they always have — Sofia answers instantly, in their language." data-es="Tus clientes llaman al mismo número de siempre — Sofia responde al instante, en su idioma.">Your customers call the same number they always have — Sofia answers instantly, in their language.</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
-        <p data-en="You get the booking details sent straight to you. No missed calls, no language barrier." data-es="Recibes los detalles de la reserva directamente. Sin llamadas perdidas, sin barrera de idioma.">You get the booking details sent straight to you. No missed calls, no language barrier.</p>
-      </div>
+      <div class="step"><div class="num">1</div><p data-i18n="step1">We set Sofia up with your business info — hours, pricing, services.</p></div>
+      <div class="step"><div class="num">2</div><p data-i18n="step2">Your customers call the same number they always have — Sofia answers instantly, in their language.</p></div>
+      <div class="step"><div class="num">3</div><p data-i18n="step3">You get the booking details sent straight to you. No missed calls, no language barrier.</p></div>
     </div>
   </div>
 
   <div class="pricing">
-    <h2 data-en="Simple, flat pricing" data-es="Precio fijo y simple">Simple, flat pricing</h2>
+    <h2 data-i18n="priceH">Simple, flat pricing</h2>
     <div class="price-row">
       <div class="price-card">
-        <h3 data-en="One-time setup" data-es="Configuración única">One-time setup</h3>
+        <h3 data-i18n="setupT">One-time setup</h3>
         <div class="price">$2,000 <span>MXN</span></div>
-        <p data-en="We set Sofia up with your business info — hours, pricing, services." data-es="Configuramos a Sofia con la información de tu negocio — horarios, precios, servicios.">We set Sofia up with your business info — hours, pricing, services.</p>
+        <p data-i18n="setupD">We set Sofia up with your business info — hours, pricing, services.</p>
       </div>
       <div class="price-card">
-        <h3 data-en="Monthly" data-es="Mensual">Monthly</h3>
+        <h3 data-i18n="monthT">Monthly</h3>
         <div class="price">$2,000 <span>MXN/mo</span></div>
-        <p data-en="Flat rate. 24/7 bilingual reception — no per-call fees, ever." data-es="Tarifa fija. Recepción bilingüe 24/7 — sin costo por llamada, nunca.">Flat rate. 24/7 bilingual reception — no per-call fees, ever.</p>
+        <p data-i18n="monthD">Flat rate. 24/7 multilingual reception — no per-call fees, ever.</p>
       </div>
     </div>
   </div>
 
-  <footer data-en="A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live." data-es="Una demostración de Yan — Puerto Morelos, Quintana Roo. Haz clic en 'Habla con Sofia' arriba para probarlo en vivo.">A demo by Yan — Puerto Morelos, Quintana Roo. Click 'Talk to Sofia' above to try it live.</footer>
+  <footer data-i18n="footer">A demo by Yan — Puerto Morelos, Quintana Roo.</footer>
 
-  <!-- Self-hosted Vapi browser widget (same origin, no external CDN) -->
+  <details class="leads">
+    <summary data-i18n="leadsH">Leads captured (this device)</summary>
+    <pre id="leadsList">(none yet)</pre>
+  </details>
+
   <script src="./vapi-widget.js" defer></script>
-  <script>
-    const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
-    const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1";
-    let vapi = null;
-    let inCall = false;
-
-    function getLang() {
-      try { return localStorage.getItem('sofia_lang') || 'en'; } catch(e) { return 'en'; }
-    }
-    function setLang(lang) {
-      document.querySelectorAll('[data-en]').forEach(el => {
-        const t = el.getAttribute('data-' + lang);
-        if (t !== null) el.innerHTML = t;
-      });
-      const bEn = document.getElementById('btn-en');
-      const bEs = document.getElementById('btn-es');
-      if (bEn) bEn.classList.toggle('active', lang === 'en');
-      if (bEs) bEs.classList.toggle('active', lang === 'es');
-      try { localStorage.setItem('sofia_lang', lang); } catch(e) {}
-    }
-
-    async function toggleCall() {
-      const btn = document.getElementById('talkBtn');
-      const status = document.getElementById('statusLine');
-      const lang = getLang();
-      if (!vapi) {
-        status.textContent = (lang === 'es') ? 'El sistema de voz no cargó.' : 'Voice SDK did not load.';
-        return;
-      }
-      if (!inCall) {
-        status.textContent = (lang === 'es') ? 'Conectando...' : 'Connecting...';
-        try { await vapi.start(VAPI_ASSISTANT_ID); }
-        catch (e) {
-          console.error(e);
-          status.textContent = (lang === 'es') ? 'No se pudo conectar. Revisa permisos de micrófono.' : 'Could not connect. Check microphone permissions.';
-        }
-      } else {
-        vapi.stop();
-      }
-    }
-
-    window.addEventListener('load', function () {
-      if (!window.vapiSDK) {
-        document.getElementById('statusLine').textContent = 'Voice SDK failed to load.';
-        return;
-      }
-      try {
-        vapi = window.vapiSDK.run({
-          apiKey: VAPI_PUBLIC_KEY,
-          assistant: VAPI_ASSISTANT_ID,
-          config: {
-            position: 'bottom-right',
-            offset: '24px',
-            idle: { type: 'round', color: 'rgb(45,212,191)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone.svg' },
-            loading: { type: 'round', color: 'rgb(245,158,11)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg' },
-            active: { type: 'round', color: 'rgb(239,68,68)', icon: 'https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg' }
-          }
-        });
-      } catch (e) {
-        console.error('vapiSDK.run failed', e);
-        document.getElementById('statusLine').textContent = 'Voice SDK failed to initialise.';
-        return;
-      }
-      const lang = getLang();
-      if (vapi && vapi.on) {
-        vapi.on('call-start', () => {
-          inCall = true;
-          document.getElementById('talkBtn').classList.add('calling');
-          document.getElementById('talkBtnText').textContent = (lang === 'es') ? 'Colgar' : 'Hang up';
-          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Conectado — habla con Sofia ahora.' : 'Connected — talk to Sofia now.';
-        });
-        vapi.on('call-end', () => {
-          inCall = false;
-          document.getElementById('talkBtn').classList.remove('calling');
-          document.getElementById('talkBtnText').textContent = (lang === 'es') ? 'Habla con Sofia ahora' : 'Talk to Sofia now';
-          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Llamada finalizada. Haz clic para intentarlo de nuevo.' : 'Call ended. Click to try again.';
-        });
-        vapi.on('error', (e) => {
-          console.error('Vapi error', e);
-          document.getElementById('statusLine').textContent = (lang === 'es') ? 'Error de conexión — revisa el micrófono.' : 'Connection error — check your browser microphone permissions.';
-        });
-      }
-    });
-
-    // initial language (safe even if JS fails later)
-    try { setLang(getLang()); } catch(e) { setLang('en'); }
-  </script>
+  <script src="./translations.js"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
