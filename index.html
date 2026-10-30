@@ -5,21 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sofia — Multilingual AI Phone Assistant | Riviera Maya</title>
 <link rel="stylesheet" href="./styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+  <div class="topbar"><span>Sofia</span><span class="live"><i></i>Live AI Receptionist</span></div>
 
   <div id="langRow" class="lang-row"></div>
 
   <header>
     <h1 data-i18n-html="h1">Never miss a call again.</h1>
     <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
+    <div class="waveform" id="heroWave" aria-hidden="true"></div>
   </header>
 
   <div class="listen">
     <h3 data-i18n="listenH">Hear Sofia introduce herself</h3>
     <div class="audio-row">
       <span id="pitchFlag">🇲🇽</span>
-      <audio id="pitchAudio" controls preload="none" src="./audio/pitch-es-MX.mp3"></audio>
+      <audio id="pitchAudio" preload="none" src="./audio/pitch-es-MX.mp3"></audio>
     </div>
   </div>
 
@@ -59,7 +65,7 @@
           <div class="call-title" data-i18n="call1t">🏠 Airbnb — English tourist</div>
           <div class="call-sub" data-i18n="call1s">Unusual ask: can he bring his service dog (a golden retriever)?</div>
         </div>
-        <audio controls preload="none" src="./audio/call-airbnb.mp3"></audio>
+        <audio preload="none" src="./audio/call-airbnb.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇲🇽</span>
@@ -67,7 +73,7 @@
           <div class="call-title" data-i18n="call2t">💈 Barber shop — local Spanish customer</div>
           <div class="call-sub" data-i18n="call2s">Unusual ask: can he bring his 4-year-old nephew?</div>
         </div>
-        <audio controls preload="none" src="./audio/call-barber.mp3"></audio>
+        <audio preload="none" src="./audio/call-barber.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇺🇸</span>
@@ -75,7 +81,7 @@
           <div class="call-title" data-i18n="call3t">🧺 Laundry — English expat</div>
           <div class="call-sub" data-i18n="call3s">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
         </div>
-        <audio controls preload="none" src="./audio/call-lavanderia.mp3"></audio>
+        <audio preload="none" src="./audio/call-lavanderia.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🇺🇸</span>
@@ -83,7 +89,7 @@
           <div class="call-title" data-i18n="call4t">🛥️ Tours — English tourist</div>
           <div class="call-sub" data-i18n="call4s">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
         </div>
-        <audio controls preload="none" src="./audio/call-tours.mp3"></audio>
+        <audio preload="none" src="./audio/call-tours.mp3"></audio>
       </div>
       <div class="call-item">
         <span class="call-flag">🔁</span>
@@ -91,7 +97,7 @@
           <div class="call-title" data-i18n="call5t">🔁 Mid-call language switch</div>
           <div class="call-sub" data-i18n="call5s">Customer starts in Spanish, switches to English, then back to Spanish</div>
         </div>
-        <audio controls preload="none" src="./audio/call-langswitch.mp3"></audio>
+        <audio preload="none" src="./audio/call-langswitch.mp3"></audio>
       </div>
     </div>
   </section>

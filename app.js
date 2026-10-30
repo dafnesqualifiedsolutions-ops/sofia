@@ -137,7 +137,7 @@ window.addEventListener("load", function () {
       config: {
         position: "bottom-right",
         offset: "24px",
-        idle: { type: "round", color: "rgb(45,212,191)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
+        idle: { type: "round", color: "rgb(255,90,60)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
         loading: { type: "round", color: "rgb(245,158,11)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg" },
         active: { type: "round", color: "rgb(239,68,68)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg" }
       }
@@ -159,3 +159,36 @@ window.addEventListener("load", function () {
 });
 
 try { setLang(getLangCode()); } catch (e) { setLang("en"); }
+
+/* === Custom waveform audio players === */
+(function () {
+  var COUNT = 32;
+  document.querySelectorAll('audio').forEach(function (a) {
+    var wrap = document.createElement('div'); wrap.className = 'player';
+    var btn = document.createElement('button'); btn.className = 'play'; btn.type = 'button'; btn.innerHTML = '<span class="ic">▶</span>';
+    var eq = document.createElement('div'); eq.className = 'peq'; var bars = [];
+    for (var i = 0; i < COUNT; i++) { var b = document.createElement('span'); b.style.setProperty('--h', (18 + Math.random() * 70) + '%'); eq.appendChild(b); bars.push(b); }
+    var time = document.createElement('span'); time.className = 'ptime'; time.textContent = '0:00';
+    wrap.appendChild(btn); wrap.appendChild(eq); wrap.appendChild(time);
+    a.parentNode.insertBefore(wrap, a); a.style.display = 'none';
+    function fmt(s) { if (!isFinite(s)) return '0:00'; s = Math.floor(s); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+    function upd() { var d = a.duration || 1; var r = (a.currentTime || 0) / d; bars.forEach(function (b, i) { b.classList.toggle('on', (i + 0.5) / COUNT <= r); }); time.textContent = fmt(a.currentTime) + (isFinite(a.duration) ? ' / ' + fmt(a.duration) : ''); }
+    btn.addEventListener('click', function () { if (a.paused) a.play(); else a.pause(); });
+    a.addEventListener('play', function () { wrap.classList.add('playing'); btn.querySelector('.ic').textContent = '❚❚'; });
+    a.addEventListener('pause', function () { wrap.classList.remove('playing'); btn.querySelector('.ic').textContent = '▶'; });
+    a.addEventListener('ended', function () { wrap.classList.remove('playing'); btn.querySelector('.ic').textContent = '▶'; });
+    a.addEventListener('timeupdate', upd);
+    a.addEventListener('loadedmetadata', upd);
+  });
+})();
+/* === Hero waveform === */
+(function () { var el = document.getElementById('heroWave'); if (!el) return; for (var i = 0; i < 56; i++) { var s = document.createElement('span'); s.style.animationDelay = (i * 0.05) + 's'; s.style.setProperty('--h', (20 + Math.random() * 70) + '%'); el.appendChild(s); } })();
+/* === Section kickers === */
+(function () {
+  var map = [
+    ['.listen', '01 — Hear Sofia'], ['.gate', '02 — Talk Live'], ['.callback', '03 — Callback'],
+    ['.calls-demo', '04 — Real Calls'], ['.cards', '05 — Who It Helps'],
+    ['.how-it-works', '06 — How It Works'], ['.pricing', '07 — Pricing']
+  ];
+  map.forEach(function (m) { var s = document.querySelector(m[0]); if (s) { var k = document.createElement('div'); k.className = 'kicker'; k.textContent = m[1]; s.parentNode.insertBefore(k, s); } });
+})();
