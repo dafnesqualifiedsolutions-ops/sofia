@@ -34,10 +34,11 @@
     background: var(--card);
     color: var(--muted);
     border: 1px solid #1e293b;
-    padding: 6px 14px;
+    padding: 6px 12px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 20px;
+    line-height: 1;
   }
   .lang-toggle button.active {
     background: var(--accent);
@@ -186,8 +187,8 @@
 <body>
 
   <div class="lang-toggle">
-    <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-    <button id="btn-es" onclick="setLang('es')">ES</button>
+    <button id="btn-en" class="active" onclick="setLang('en')" aria-label="English" title="English">🇺🇸</button>
+    <button id="btn-es" onclick="setLang('es')" aria-label="Español" title="Español">🇲🇽</button>
   </div>
 
   <header>
