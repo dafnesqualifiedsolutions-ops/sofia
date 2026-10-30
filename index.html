@@ -190,6 +190,18 @@
     margin-top: 0;
   }
   .talk-btn.secondary:hover { background: rgba(45,212,191,0.12); transform: translateY(-1px); box-shadow: none; }
+
+  .calls-demo { text-align: center; max-width: 680px; width: 100%; margin: 8px 0 36px; }
+  .calls-demo h3 { color: var(--text); margin-bottom: 8px; font-size: 1.15rem; }
+  .calls-note { color: var(--muted); font-size: 0.9rem; line-height: 1.45; margin-bottom: 20px; }
+  .call-list { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+  .call-item { display: flex; align-items: center; gap: 12px; background: var(--card); border: 1px solid #1e293b; border-radius: 12px; padding: 14px 16px; }
+  .call-flag { font-size: 1.6rem; flex-shrink: 0; line-height: 1; }
+  .call-meta { flex: 1; min-width: 0; }
+  .call-title { color: var(--accent); font-weight: 600; font-size: 0.98rem; }
+  .call-sub { color: var(--muted); font-size: 0.82rem; line-height: 1.35; margin-top: 2px; }
+  .call-item audio { width: min(200px, 42%); height: 38px; flex-shrink: 0; }
+  @media (max-width: 480px) { .call-item { flex-wrap: wrap; } .call-item audio { width: 100%; } }
 </style>
 </head>
 <body>
@@ -221,6 +233,53 @@
     <span id="talkBtnText" data-en="Talk to Sofia live" data-es="Hablar con Sofia en vivo">Talk to Sofia live</span>
   </button>
   <div class="status-line" id="statusLine" data-en="The sample above is free. The live button connects you to Sofia (uses call minutes)." data-es="La muestra de arriba es gratis. El botón en vivo te conecta con Sofia (usa minutos de llamada).">The sample above is free. The live button connects you to Sofia (uses call minutes).</div>
+
+  <section class="calls-demo">
+    <h3 data-en="Hear Sofia handle real customer calls" data-es="Escucha a Sofia atender llamadas reales de clientes">Hear Sofia handle real customer calls</h3>
+    <p class="calls-note" data-en="Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call." data-es="Cinco llamadas de práctica — nadie llama de verdad. Clientes distintos, preguntas reales, y uno cambia de idioma a mitad de llamada.">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
+    <div class="call-list">
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-en="🏠 Airbnb — English tourist" data-es="🏠 Airbnb — turista en inglés">🏠 Airbnb — English tourist</div>
+          <div class="call-sub" data-en="Unusual ask: can he bring his service dog (a golden retriever)?" data-es="Pregunta inusual: ¿puede llevar a su perro de servicio (un golden retriever)?">Unusual ask: can he bring his service dog (a golden retriever)?</div>
+        </div>
+        <audio controls preload="none" src="./audio/call-airbnb.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇲🇽</span>
+        <div class="call-meta">
+          <div class="call-title" data-en="💈 Barber shop — local Spanish customer" data-es="💈 Barbería — cliente local en español">💈 Barber shop — local Spanish customer</div>
+          <div class="call-sub" data-en="Unusual ask: can he bring his 4-year-old nephew?" data-es="Pregunta inusual: ¿puede llevar a su sobrino de 4 años?">Unusual ask: can he bring his 4-year-old nephew?</div>
+        </div>
+        <audio controls preload="none" src="./audio/call-barber.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-en="🧺 Laundry — English expat" data-es="🧺 Lavandería — expatriado en inglés">🧺 Laundry — English expat</div>
+          <div class="call-sub" data-en="Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema" data-es="Pregunta inusual: edredón king size + detergente hipoalergénico por eczema de su hijo">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
+        </div>
+        <audio controls preload="none" src="./audio/call-lavanderia.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-en="🛥️ Tours — English tourist" data-es="🛥️ Tours — turista en inglés">🛥️ Tours — English tourist</div>
+          <div class="call-sub" data-en="Unusual ask: is the yacht wheelchair-accessible for his mom?" data-es="Pregunta inusual: ¿el yate es accesible para la silla de ruedas de su mamá?">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
+        </div>
+        <audio controls preload="none" src="./audio/call-tours.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🔁</span>
+        <div class="call-meta">
+          <div class="call-title" data-en="🔁 Mid-call language switch" data-es="🔁 Cambio de idioma a mitad de llamada">🔁 Mid-call language switch</div>
+          <div class="call-sub" data-en="Customer starts in Spanish, switches to English, then back to Spanish" data-es="El cliente empieza en español, cambia a inglés y vuelve al español">Customer starts in Spanish, switches to English, then back to Spanish</div>
+        </div>
+        <audio controls preload="none" src="./audio/call-langswitch.mp3"></audio>
+      </div>
+    </div>
+  </section>
 
   <div class="cards">
     <div class="card">
