@@ -3,11 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sofia is a multilingual AI phone assistant for businesses in the Riviera Maya, Mexico. She answers calls, books appointments, and helps tourists 24/7 in English, Spanish, and more.">
+<meta property="og:title" content="Sofia AI — Never Miss a Call Again | Riviera Maya">
+<meta property="og:description" content="Multilingual AI phone assistant for Mexican businesses. 24/7 call answering, appointment booking, and tourist help — flat monthly pricing in MXN.">
+<meta property="og:type" content="website">
 <title>Sofia — Multilingual AI Phone Assistant | Riviera Maya</title>
 <link rel="stylesheet" href="./styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./index-redesigned.css">
 </head>
 <body>
 
@@ -17,8 +22,8 @@
   <div id="langRow" class="lang-row"></div>
 
   <header>
-    <div class="sofia-face" aria-hidden="true"><svg class="sf" viewBox="0 0 100 100" width="96" height="96" role="img" aria-label="Sofia"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a3c"/><stop offset="1" stop-color="#ffb15c"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#sg)"/><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="38" cy="44" r="5" fill="#0a0a0c"/><circle cx="62" cy="44" r="5" fill="#0a0a0c"/><path d="M36 60 Q50 74 64 60" stroke="#0a0a0c" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 50 a28 28 0 0 1 56 0" stroke="#0a0a0c" stroke-width="4" fill="none"/><rect x="16" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><rect x="74" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><line x1="50" y1="74" x2="50" y2="84" stroke="#0a0a0c" stroke-width="4"/><circle cx="50" cy="86" r="4" fill="#0a0a0c"/></svg></div>
-    <h1 data-i18n-html="h1">Never miss a call again.</h1>
+    <div class="sofia-face" aria-hidden="true"><svg class="sf" viewBox="0 0 100 100" width="96" height="96" role="img" aria-label="Sofia"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18B85C"/><stop offset="1" stop-color="#E0243C"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#sg)"/><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="38" cy="44" r="5" fill="#0a0a0c"/><circle cx="62" cy="44" r="5" fill="#0a0a0c"/><path d="M36 60 Q50 74 64 60" stroke="#0a0a0c" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 50 a28 28 0 0 1 56 0" stroke="#0a0a0c" stroke-width="4" fill="none"/><rect x="16" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><rect x="74" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><line x1="50" y1="74" x2="50" y2="84" stroke="#0a0a0c" stroke-width="4"/><circle cx="50" cy="86" r="4" fill="#0a0a0c"/></svg></div>
+    <h1 data-i18n-html="h1">Never miss <span>a call</span> again.</h1>
     <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
     <div class="waveform" id="heroWave" aria-hidden="true"></div>
   </header>
@@ -78,25 +83,49 @@
     </div>
   </section>
 
+  <div class="kicker">01 — El problema</div>
+  <div class="problem">
+    <h2 data-i18n="probH">Las llamadas perdidas son dinero perdido</h2>
+    <p data-i18n="probD">Every missed call is a customer gone to a competitor. For busy businesses in the Riviera Maya — restaurants at lunch, tours at check-in, shops during peak hours — you can't answer every ring. Sofia never lets one slip away.</p>
+  </div>
+
+  <div class="kicker">02 — Quién lo necesita</div>
   <div class="cards">
     <div class="card">
-      <h3 data-i18n="card1t">🏠 Real Estate &amp; Airbnb</h3>
-      <p data-i18n="card1d">Answers inquiries, checks availability, books viewings and check-ins in the customer's language.</p>
+      <h3 data-i18n="card1t">🏠 Hotels & Airbnb</h3>
+      <p data-i18n="card1d">Answers inquiries, checks availability, books check-ins and tours in the guest's language.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card2t">💈 Barber Shops</h3>
+      <h3 data-i18n="card2t">💈 Barbers & Salons</h3>
       <p data-i18n="card2d">Books appointments and answers questions from expats who don't speak Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card3t">🧺 Laundromats</h3>
+      <h3 data-i18n="card3t">🧺 Lavanderías</h3>
       <p data-i18n="card3d">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card4t">🛥️ Tours &amp; Excursions</h3>
-      <p data-i18n="card4d">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
+      <h3 data-i18n="card4t">🛥️ Tours & Excursions</h3>
+      <p data-i18n="card4d">Sofia can recommend tours, check availability, and answer accessibility questions for your guests.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card5t">🍽️ Restaurants</h3>
+      <p data-i18n="card5d">Takes table bookings, answers menu questions, and handles large group enquiries during busy service.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card6t">🏥 Clínicas & Terapeutas</h3>
+      <p data-i18n="card6d">Books appointments, answers basic questions about services, and manages callback requests discreetly.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card7t">🔧 Tradespeople</h3>
+      <p data-i18n="card7d">Answers quote requests, collects job details, and schedules callbacks while you're on the job.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card8t">🏢 Property Management</h3>
+      <p data-i18n="card8d">Handles tenant enquiries, maintenance requests, and viewing bookings in multiple languages.</p>
     </div>
   </div>
 
+  <div class="kicker">03 — Cómo funciona</div>
   <div class="how-it-works">
     <h2 data-i18n="howH">How it works</h2>
     <div class="steps">
@@ -106,24 +135,97 @@
     </div>
   </div>
 
-  <div class="pricing">
-    <h2 data-i18n="priceH">Simple, flat pricing</h2>
-    <div class="price-row">
-      <div class="price-card">
-        <h3 data-i18n="setupT">One-time setup</h3>
-        <div class="price">$1,899 <span>MXN</span></div>
-        <p data-i18n="setupD">We set Sofia up with your business info — hours, pricing, services.</p>
+  <div class="kicker">04 — Confianza & soporte</div>
+  <div class="trust">
+    <h2 data-i18n="trustH">Hecho para negocios en México</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🇲🇽</div>
+        <h4 data-i18n="trust1T">Soporte en español</h4>
+        <p data-i18n="trust1D">Nuestro equipo habla español y está disponible de lunes a viernes, 9:00–17:00. Entendemos tu negocio.</p>
       </div>
-      <div class="price-card">
-        <h3 data-i18n="monthT">Monthly</h3>
-        <div class="price">$1,449 <span>MXN/mo</span></div>
-        <p data-i18n="monthD">Flat rate. 24/7 multilingual reception — no per-call fees, ever.</p>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <h4 data-i18n="trust2T">Listo en días, no semanas</h4>
+        <p data-i18n="trust2D">La mayoría de los negocios están funcionando en 3–5 días hábiles. Nosotros nos encargamos de todo — tú solo empiezas a recibir llamadas.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <h4 data-i18n="trust3T">Datos seguros en México</h4>
+        <p data-i18n="trust3D">Todas las llamadas y datos se manejan con servidores en México. La información de tus clientes está protegida.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📞</div>
+        <h4 data-i18n="trust4T">Sin hardware necesario</h4>
+        <p data-i18n="trust4D">Sofia funciona con tu número actual. Sin líneas nuevas, sin dispositivos, sin visitas de instalación.</p>
       </div>
     </div>
   </div>
 
+  <div class="kicker">05 — Precios</div>
+  <div class="pricing">
+    <h2 data-i18n="priceH">Precios simples y fijos</h2>
+    <p class="pricing-note" data-i18n="priceNote">Sin costo por llamada. Sin cargos ocultos. Precios en pesos mexicanos.</p>
+    <div class="price-row">
+      <div class="price-card">
+        <h3 data-i18n="setupT">Configuración única</h3>
+        <div class="price">$1,899 <span>MXN</span></div>
+        <p data-i18n="setupD">Entrenamos a Sofia con la información de tu negocio — horarios, precios, servicios.</p>
+      </div>
+      <div class="price-card featured">
+        <div class="badge" data-i18n="bestValue">Mejor valor</div>
+        <h3 data-i18n="yearT">Plan anual</h3>
+        <div class="price">$14,999 <span>MXN / año</span></div>
+        <p data-i18n="yearD">Son ~$1,250/mes — ahorra 2 meses vs mensual. Incluye todo, sin extras.</p>
+      </div>
+      <div class="price-card">
+        <h3 data-i18n="monthT">Mensual</h3>
+        <div class="price">$1,449 <span>MXN / mes</span></div>
+        <p data-i18n="monthD">Tarifa fija. Recepción multilingüe 24/7 — sin costo por llamada, nunca. Cancela cuando quieras.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="kicker">06 — Preguntas frecuentes</div>
+  <div class="faq">
+    <h2 data-i18n="faqH">Frequently asked questions</h2>
+    <details class="faq-item">
+      <summary data-i18n="faq1Q">¿Necesito un número nuevo?</summary>
+      <p data-i18n="faq1A">No. Sofia funciona con tu número actual. Redirigimos las llamadas — tus clientes marcan el mismo número de siempre.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq2Q">¿Qué idiomas habla Sofia?</summary>
+      <p data-i18n="faq2A">Sofia habla inglés, español, francés, alemán, holandés, italiano, portugués y más. Detecta el idioma automáticamente.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq3Q">¿Los clientes sabrán que hablan con IA?</summary>
+      <p data-i18n="faq3A">Sofia es clara sobre que es una asistente de IA. La mayoría está contenta con respuestas rápidas — y si piden un humano, toma un mensaje.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq4Q">¿Qué pasa si Sofia no entiende?</summary>
+      <p data-i18n="faq4A">Pedirá al llamante que repita o reformule. Si no puede ayudar, toma un mensaje detallado y te lo envía al instante.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq5Q">¿Puede reservar en mi calendario?</summary>
+      <p data-i18n="faq5A">Sí — podemos conectar Sofia a Google Calendar, Outlook o la mayoría de sistemas de reservas. Las citas aparecen en tiempo real.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq6Q">¿Necesito conocimientos técnicos?</summary>
+      <p data-i18n="faq6A">Para nada. Nosotros manejamos toda la configuración. Solo nos das tus horarios, precios y servicios. Nosotros hacemos el resto.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq7Q">¿Cuál es la política de cancelación?</summary>
+      <p data-i18n="faq7A">Los planes mensuales se pueden cancelar en cualquier momento con 30 días de aviso. Los anuales no son reembolsables pero se pueden cancelar antes de la renovación.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq8Q">¿Mis datos están seguros?</summary>
+      <p data-i18n="faq8A">Sí. Todas las llamadas y datos se almacenan de forma segura en México. Solo recopilamos lo necesario. Puedes solicitar eliminación total en cualquier momento.</p>
+    </details>
+  </div>
+
   <section class="gate">
     <h3 data-i18n="gateH">Talk to Sofia live</h3>
+    <p class="gate-sub" data-i18n="gateSub">Fill in your details and Sofia will call you right now — no download, no sign-up.</p>
     <form id="gateForm" class="gate-form" autocomplete="off">
       <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
       <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
@@ -148,8 +250,18 @@
     <div class="status-line" id="cbStatus"></div>
   </section>
 
+  <div class="cta-strip">
+    <h2 data-i18n="ctaH">Ready to stop missing calls?</h2>
+    <p data-i18n="ctaD">Talk to Sofia right now, or leave your number and we'll be in touch within hours.</p>
+  </div>
+
   <footer data-i18n="footer">A demo by Yan — Puerto Morelos, Quintana Roo.</footer>
-  <div class="biz-contact"><button class="wa-btn" id="waBtn" type="button" aria-disabled="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.7-.8L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg> WhatsApp</button></div>
+  <div class="biz-contact">
+    <button class="wa-btn" id="waBtn" type="button" aria-disabled="true" title="WhatsApp">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.7-.8L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      WhatsApp
+    </button>
+  </div>
 
   <details class="leads">
     <summary data-i18n="leadsH">Leads captured (this device)</summary>
@@ -158,6 +270,7 @@
 
   <script src="./vapi-widget.js" defer></script>
   <script src="./translations.js"></script>
+  <script src="./translations-mx-patch.js"></script>
   <script src="./config.js"></script>
   <script src="./app.js"></script>
 </body>

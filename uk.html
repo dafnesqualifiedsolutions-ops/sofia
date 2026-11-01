@@ -3,12 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sofia is a multilingual AI phone assistant for UK businesses in the North West — Liverpool, Manchester, and beyond. She answers calls, books appointments, and helps customers 24/7, at a flat low monthly cost.">
+<meta property="og:title" content="Sofia AI — Never Miss a Call Again">
+<meta property="og:description" content="Multilingual AI phone assistant for UK businesses. 24/7 call answering, appointment booking, and customer support — flat monthly pricing from £149.">
+<meta property="og:type" content="website">
 <title>Sofia — Multilingual AI Phone Assistant | North West England</title>
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./uk-redesigned.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./uk.css">
+<link rel="stylesheet" href="./uk.css">
 </head>
 <body>
 
@@ -18,17 +22,17 @@
   <div id="langRow" class="lang-row"></div>
 
   <header>
-    <div class="sofia-face" aria-hidden="true"><svg class="sf" viewBox="0 0 100 100" width="96" height="96" role="img" aria-label="Sofia"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5a3c"/><stop offset="1" stop-color="#ffb15c"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#sg)"/><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="38" cy="44" r="5" fill="#0a0a0c"/><circle cx="62" cy="44" r="5" fill="#0a0a0c"/><path d="M36 60 Q50 74 64 60" stroke="#0a0a0c" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 50 a28 28 0 0 1 56 0" stroke="#0a0a0c" stroke-width="4" fill="none"/><rect x="16" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><rect x="74" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><line x1="50" y1="74" x2="50" y2="84" stroke="#0a0a0c" stroke-width="4"/><circle cx="50" cy="86" r="4" fill="#0a0a0c"/></svg></div>
-    <h1 data-i18n-html="h1">Never miss a call again.</h1>
-    <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses across the North West — Liverpool, Manchester and beyond. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
+    <div class="sofia-face" aria-hidden="true"><svg class="sf" viewBox="0 0 100 100" width="96" height="96" role="img" aria-label="Sofia"><defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cf142b"/><stop offset="1" stop-color="#1d3f8f"/></linearGradient></defs><circle cx="50" cy="50" r="46" fill="url(#sg)"/><circle cx="50" cy="50" r="46" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="2"/><circle cx="38" cy="44" r="5" fill="#0a0a0c"/><circle cx="62" cy="44" r="5" fill="#0a0a0c"/><path d="M36 60 Q50 74 64 60" stroke="#0a0a0c" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M22 50 a28 28 0 0 1 56 0" stroke="#0a0a0c" stroke-width="4" fill="none"/><rect x="16" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><rect x="74" y="46" width="10" height="16" rx="4" fill="#0a0a0c"/><line x1="50" y1="74" x2="50" y2="84" stroke="#0a0a0c" stroke-width="4"/><circle cx="50" cy="86" r="4" fill="#0a0a0c"/></svg></div>
+    <h1 data-i18n-html="h1">Never miss <span>a call</span> again.</h1>
+    <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses across the North West of England — Liverpool, Manchester, and beyond. She answers calls, books appointments, and helps customers 24/7, at a flat low monthly cost.</p>
     <div class="waveform" id="heroWave" aria-hidden="true"></div>
   </header>
 
   <div class="listen">
     <h3 data-i18n="listenH">Hear Sofia introduce herself</h3>
     <div class="audio-row">
-      <span id="pitchFlag">🇲🇽</span>
-      <audio id="pitchAudio" preload="none" src="./audio-uk/pitch-es-MX.mp3"></audio>
+      <span id="pitchFlag">🇬🇧</span>
+      <audio id="pitchAudio" preload="none" src="./audio-uk/pitch-en-GB.mp3"></audio>
     </div>
   </div>
 
@@ -37,34 +41,34 @@
     <p class="calls-note" data-i18n="callsNote">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
     <div class="call-list">
       <div class="call-item">
-        <span class="call-flag">🇺🇸</span>
+        <span class="call-flag">🇬🇧</span>
         <div class="call-meta">
-          <div class="call-title" data-i18n="call1t">🏠 Airbnb — English tourist</div>
-          <div class="call-sub" data-i18n="call1s">Unusual ask: can he bring his service dog (a golden retriever)?</div>
+          <div class="call-title" data-i18n="call1t">🏠 Estate Agent — English buyer</div>
+          <div class="call-sub" data-i18n="call1s">Unusual ask: can he view a property on a Sunday morning?</div>
         </div>
-        <audio preload="none" src="./audio-uk/call-airbnb.mp3"></audio>
+        <audio preload="none" src="./audio-uk/call-estate.mp3"></audio>
       </div>
       <div class="call-item">
-        <span class="call-flag">🇲🇽</span>
+        <span class="call-flag">🇵🇱</span>
         <div class="call-meta">
-          <div class="call-title" data-i18n="call2t">💈 Barber shop — local Spanish customer</div>
-          <div class="call-sub" data-i18n="call2s">Unusual ask: can he bring his 4-year-old nephew?</div>
+          <div class="call-title" data-i18n="call2t">💈 Barber — Polish customer</div>
+          <div class="call-sub" data-i18n="call2s">Unusual ask: can he bring his 4-year-old son?</div>
         </div>
         <audio preload="none" src="./audio-uk/call-barber.mp3"></audio>
       </div>
       <div class="call-item">
-        <span class="call-flag">🇺🇸</span>
+        <span class="call-flag">🇬🇧</span>
         <div class="call-meta">
-          <div class="call-title" data-i18n="call3t">🧺 Laundry — English expat</div>
-          <div class="call-sub" data-i18n="call3s">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
+          <div class="call-title" data-i18n="call3t">🧺 Dry Cleaner — English professional</div>
+          <div class="call-sub" data-i18n="call3s">Unusual ask: same-day suit cleaning for a last-minute meeting</div>
         </div>
-        <audio preload="none" src="./audio-uk/call-lavanderia.mp3"></audio>
+        <audio preload="none" src="./audio-uk/call-dryclean.mp3"></audio>
       </div>
       <div class="call-item">
-        <span class="call-flag">🇺🇸</span>
+        <span class="call-flag">🇬🇧</span>
         <div class="call-meta">
-          <div class="call-title" data-i18n="call4t">🛥️ Tours — English tourist</div>
-          <div class="call-sub" data-i18n="call4s">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
+          <div class="call-title" data-i18n="call4t">🛥️ Boat Tour — elderly couple</div>
+          <div class="call-sub" data-i18n="call4s">Unusual ask: is the tour suitable for someone with limited mobility?</div>
         </div>
         <audio preload="none" src="./audio-uk/call-tours.mp3"></audio>
       </div>
@@ -72,59 +76,156 @@
         <span class="call-flag">🔁</span>
         <div class="call-meta">
           <div class="call-title" data-i18n="call5t">🔁 Mid-call language switch</div>
-          <div class="call-sub" data-i18n="call5s">Customer starts in Spanish, switches to English, then back to Spanish</div>
+          <div class="call-sub" data-i18n="call5s">Customer starts in Polish, switches to English, then back to Polish</div>
         </div>
         <audio preload="none" src="./audio-uk/call-langswitch.mp3"></audio>
       </div>
     </div>
   </section>
 
+  <div class="kicker">01 — The problem</div>
+  <div class="problem">
+    <h2 data-i18n="probH">Missed calls are lost money</h2>
+    <p data-i18n="probD">Every missed call is a customer gone to a competitor. For busy UK businesses — restaurants at lunch, clinics between appointments, trades on the job — you can't answer every ring. Sofia never lets one slip away.</p>
+  </div>
+
+  <div class="kicker">02 — Who it helps</div>
   <div class="cards">
     <div class="card">
-      <h3 data-i18n="card1t">🏠 Real Estate &amp; Airbnb</h3>
-      <p data-i18n="card1d">Answers inquiries, checks availability, books viewings and check-ins in the customer's language.</p>
+      <h3 data-i18n="card1t">🏠 Estate Agents</h3>
+      <p data-i18n="card1d">Answers viewing enquiries, checks availability, and books appointments in the caller's language.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card2t">💈 Barber Shops</h3>
-      <p data-i18n="card2d">Books appointments and answers questions from expats who don't speak Spanish.</p>
+      <h3 data-i18n="card2t">💈 Barbers & Salons</h3>
+      <p data-i18n="card2d">Books appointments and answers questions from customers who don't speak English.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card3t">🧺 Laundromats</h3>
-      <p data-i18n="card3d">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
+      <h3 data-i18n="card3t">🧺 Dry Cleaners</h3>
+      <p data-i18n="card3d">Takes order enquiries and collection requests in English, Polish, Arabic, and more.</p>
     </div>
     <div class="card">
-      <h3 data-i18n="card4t">🛥️ Tours &amp; Excursions</h3>
-      <p data-i18n="card4d">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
+      <h3 data-i18n="card4t">🛥️ Boat Tours & Experiences</h3>
+      <p data-i18n="card4d">Sofia can recommend tours, check availability, and answer accessibility questions for your guests.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card5t">🍽️ Restaurants</h3>
+      <p data-i18n="card5d">Takes table bookings, answers menu questions, and handles large group enquiries during busy service.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card6t">🏥 Clinics & Therapists</h3>
+      <p data-i18n="card6d">Books appointments, answers basic questions about services, and manages callback requests discreetly.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card7t">🔧 Tradespeople</h3>
+      <p data-i18n="card7d">Answers quote requests, collects job details, and schedules callbacks while you're on the job.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card8t">🏢 Property Management</h3>
+      <p data-i18n="card8d">Handles tenant enquiries, maintenance requests, and viewing bookings in multiple languages.</p>
     </div>
   </div>
 
+  <div class="kicker">03 — How it works</div>
   <div class="how-it-works">
     <h2 data-i18n="howH">How it works</h2>
     <div class="steps">
-      <div class="step"><div class="num">1</div><p data-i18n="step1">We set Sofia up with your business info — hours, pricing, services.</p></div>
-      <div class="step"><div class="num">2</div><p data-i18n="step2">Your customers call the same number they always have — Sofia answers instantly, in their language.</p></div>
-      <div class="step"><div class="num">3</div><p data-i18n="step3">You get the booking details sent straight to you. No missed calls, no language barrier.</p></div>
+      <div class="step"><div class="num">1</div><p data-i18n="step1">We set Sofia up with your business info — hours, pricing, services, and any FAQs specific to you.</p></div>
+      <div class="step"><div class="num">2</div><p data-i18n="step2">Your customers call the same number they always have — Sofia answers instantly, in their language, 24/7.</p></div>
+      <div class="step"><div class="num">3</div><p data-i18n="step3">You get the booking details or message sent straight to you. No missed calls, no language barrier, no extra staff.</p></div>
     </div>
   </div>
 
+  <div class="kicker">04 — Trust & support</div>
+  <div class="trust">
+    <h2 data-i18n="trustH">Built for UK businesses</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">🇬🇧</div>
+        <h4 data-i18n="trust1T">UK-based support</h4>
+        <p data-i18n="trust1D">Our team is based in the UK and available Monday–Friday, 9am–5pm. We speak your language.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">⚡</div>
+        <h4 data-i18n="trust2T">Live in days, not weeks</h4>
+        <p data-i18n="trust2D">Most businesses are fully set up within 3–5 business days. We handle everything — you just start getting calls.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <h4 data-i18n="trust3T">GDPR compliant</h4>
+        <p data-i18n="trust3D">All calls and data are handled in compliance with UK data protection law. Your customers' information is safe.</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">📞</div>
+        <h4 data-i18n="trust4T">No hardware needed</h4>
+        <p data-i18n="trust4D">Sofia works with your existing phone number. No new lines, no devices, no installation visits.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="kicker">05 — Pricing</div>
   <div class="pricing">
     <h2 data-i18n="priceH">Simple, flat pricing</h2>
+    <p class="pricing-note" data-i18n="priceNote">No per-call fees. No hidden charges. VAT included in all prices.</p>
     <div class="price-row">
       <div class="price-card">
         <h3 data-i18n="setupT">One-time setup</h3>
         <div class="price">£199 <span>GBP</span></div>
-        <p data-i18n="setupD">We set Sofia up with your business info — hours, pricing, services.</p>
+        <p data-i18n="setupD">We train Sofia on your business — hours, pricing, services, FAQs. One-off payment.</p>
+      </div>
+      <div class="price-card featured">
+        <div class="badge" data-i18n="bestValue">Best value</div>
+        <h3 data-i18n="yearT">Annual plan</h3>
+        <div class="price">£299 <span>GBP / year</span></div>
+        <p data-i18n="yearD">That's £25/month — save 2 months vs monthly. Includes everything, no extras.</p>
       </div>
       <div class="price-card">
         <h3 data-i18n="monthT">Monthly</h3>
-        <div class="price">£149 <span>GBP / mo</span></div>
-        <p data-i18n="monthD">Flat rate. 24/7 multilingual reception — no per-call fees, ever.</p>
+        <div class="price">£49 <span>GBP / mo</span></div>
+        <p data-i18n="monthD">Flat rate. 24/7 multilingual reception — cancel anytime, no lock-in.</p>
       </div>
     </div>
   </div>
 
+  <div class="kicker">06 — FAQ</div>
+  <div class="faq">
+    <h2 data-i18n="faqH">Frequently asked questions</h2>
+    <details class="faq-item">
+      <summary data-i18n="faq1Q">Do I need a new phone number?</summary>
+      <p data-i18n="faq1A">No. Sofia works with your existing business number. We redirect calls to her behind the scenes — your customers dial the same number they always have.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq2Q">What languages does Sofia speak?</summary>
+      <p data-i18n="faq2A">Sofia speaks English, Spanish, French, German, Dutch, Italian, Portuguese, and more. She detects the caller's language automatically and responds in it.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq3Q">Will customers know they're talking to AI?</summary>
+      <p data-i18n="faq3A">Sofia is clear that she's an AI assistant. Most callers are happy with fast, accurate answers — and if they ask for a human, she can take a message or transfer the call.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq4Q">What happens if Sofia doesn't understand?</summary>
+      <p data-i18n="faq4A">She'll ask the caller to repeat or rephrase. If she still can't help, she takes a detailed message and sends it to you instantly — you never miss the lead.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq5Q">Can Sofia book appointments into my calendar?</summary>
+      <p data-i18n="faq5A">Yes — we can connect Sofia to Google Calendar, Outlook, or most booking systems. Appointments appear in real time.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq6Q">Do I need technical skills to set this up?</summary>
+      <p data-i18n="faq6A">Not at all. We handle the entire setup. You just tell us your hours, services, and any specific questions you get asked. We do the rest.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq7Q">What's the cancellation policy?</summary>
+      <p data-i18n="faq7A">Monthly plans can be cancelled anytime with 30 days' notice. Annual plans are non-refundable but can be cancelled before renewal.</p>
+    </details>
+    <details class="faq-item">
+      <summary data-i18n="faq8Q">Is this GDPR compliant?</summary>
+      <p data-i18n="faq8A">Yes. All call data is stored securely in the UK. We only collect what's necessary to handle the call and pass leads to you. You can request full deletion at any time.</p>
+    </details>
+  </div>
+
   <section class="gate">
     <h3 data-i18n="gateH">Talk to Sofia live</h3>
+    <p class="gate-sub" data-i18n="gateSub">Fill in your details and Sofia will call you right now — no download, no sign-up.</p>
     <form id="gateForm" class="gate-form" autocomplete="off">
       <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
       <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
@@ -149,8 +250,19 @@
     <div class="status-line" id="cbStatus"></div>
   </section>
 
-  <footer data-i18n="footer">A demo by Yan — North West England.</footer>
-  <div class="biz-contact"><button class="wa-btn" id="waBtn" type="button" aria-disabled="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.7-.8L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg> WhatsApp</button></div>
+  <div class="cta-strip">
+    <h2 data-i18n="ctaH">Ready to stop missing calls?</h2>
+    <p data-i18n="ctaD">Talk to Sofia right now, or leave your number and we'll be in touch within hours.</p>
+  </div>
+
+  <footer data-i18n="footer">A demo by Yan — Puerto Morelos, Quintana Roo.</footer>
+  <div class="biz-contact">
+    <button class="wa-btn" id="waBtn" type="button" aria-disabled="true" title="WhatsApp coming soon">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.7-.8L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>
+      WhatsApp <span class="wa-soon">(coming soon)</span>
+    </button>
+    <p class="wa-note" data-i18n="waNote">UK WhatsApp number coming shortly — use the forms above to get in touch now.</p>
+  </div>
 
   <details class="leads">
     <summary data-i18n="leadsH">Leads captured (this device)</summary>
@@ -159,6 +271,7 @@
 
   <script src="./vapi-widget.js" defer></script>
   <script src="./translations.js"></script>
+  <script src="./translations-uk-patch.js"></script>
   <script src="./config.js"></script>
   <script src="./app.js"></script>
 </body>
