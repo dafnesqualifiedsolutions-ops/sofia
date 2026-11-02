@@ -5,7 +5,7 @@ const UK_ASSISTANT_ID = "6933946a-8b14-4881-9725-3e4505d3a1eb";
 const LEAD_ENDPOINT = "https://formspree.io/f/xaeebgrz";
 
 const LANGS = [
-  { code: "en",   flag: "🇬🇧", label: "English" },
+  { code: "en",   flag: "🇺🇸", label: "English" },
   { code: "es-MX", flag: "🇲🇽", label: "Español (MX)" },
   { code: "es-ES", flag: "🇪🇸", label: "Español (ES)" },
   { code: "es-CO", flag: "🇨🇴", label: "Español (CO)" },
@@ -141,7 +141,7 @@ window.addEventListener("load", function () {
       config: {
         position: "bottom-right",
         offset: "24px",
-        idle: { type: "round", color: "rgb(200,16,46)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
+        idle: { type: "round", color: "rgb(255,90,60)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
         loading: { type: "round", color: "rgb(245,158,11)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg" },
         active: { type: "round", color: "rgb(239,68,68)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg" }
       }
@@ -174,7 +174,7 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
   var biz = p.get('biz') || cfg.businessName;
   var wa = p.get('wa') || cfg.whatsapp;
   var THEMES = {
-    coral: ['#C8102E', '#a80d25', '#0a0a0c', '#C8102E'],
+    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c', '#ff5a3c'],
     gold: ['#f5b53d', '#ffe08a', '#0c0a07', '#ffb15c'],
     violet: ['#a78bfa', '#c4b5fd', '#0b0a12', '#c4b5fd'],
     teal: ['#2dd4bf', '#5eead4', '#06100f', '#5eead4'],

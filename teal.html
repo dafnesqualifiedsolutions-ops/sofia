@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofia — Multilingual AI Phone Assistant | Riviera Maya</title>
+<link rel="stylesheet" href="./styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./theme-teal.css">
+</head>
+<body>
+
+  <div class="topbar"><span>Sofia</span><span class="live"><i></i>Live AI Receptionist</span></div>
+
+  <div id="langRow" class="lang-row"></div>
+
+  <header>
+    <h1 data-i18n-html="h1">Never miss a call again.</h1>
+    <p data-i18n="sub">Sofia is a multilingual AI phone assistant for local businesses in the Riviera Maya. She answers calls, books appointments, and helps tourists — 24/7, at a flat low monthly cost.</p>
+    <div class="waveform" id="heroWave" aria-hidden="true"></div>
+  </header>
+
+  <div class="listen">
+    <h3 data-i18n="listenH">Hear Sofia introduce herself</h3>
+    <div class="audio-row">
+      <span id="pitchFlag">🇲🇽</span>
+      <audio id="pitchAudio" preload="none" src="./audio/pitch-es-MX.mp3"></audio>
+    </div>
+  </div>
+
+  <section class="gate">
+    <h3 data-i18n="gateH">Talk to Sofia live</h3>
+    <form id="gateForm" class="gate-form" autocomplete="off">
+      <input id="gateName" type="text" data-i18n-ph="gateNamePh" placeholder="Your name">
+      <input id="gatePhone" type="tel" data-i18n-ph="gatePhonePh" placeholder="WhatsApp or phone number">
+      <label class="consent"><input id="gateConsent" type="checkbox"> <span data-i18n="gateConsent">I agree to talk to an AI assistant</span></label>
+      <button type="submit" class="talk-btn" id="gateBtn" data-i18n="gateBtn">Start call with Sofia</button>
+    </form>
+    <div class="status-line" id="statusLine"></div>
+  </section>
+
+  <section class="callback">
+    <h3 data-i18n="callbackH">Prefer we call you? Leave your number</h3>
+    <form id="cbForm" class="cb-form" autocomplete="off">
+      <input id="cbName" type="text" data-i18n-ph="cbNamePh" placeholder="Your name (optional)">
+      <input id="cbPhone" type="tel" data-i18n-ph="cbPhonePh" placeholder="Your number">
+      <select id="cbIntent">
+        <option value="call-back" data-i18n="cbOptBack">Call me back</option>
+        <option value="boss" data-i18n="cbOptBoss">Speak to the boss</option>
+        <option value="other" data-i18n="cbOptOther">Other</option>
+      </select>
+      <button type="submit" class="talk-btn" id="cbBtn" data-i18n="cbBtn">Send my number</button>
+    </form>
+    <div class="status-line" id="cbStatus"></div>
+  </section>
+
+  <section class="calls-demo">
+    <h3 data-i18n="callsH">Hear Sofia handle real customer calls</h3>
+    <p class="calls-note" data-i18n="callsNote">Five roleplay calls — no one is really calling. Different customers, real questions, and one switches language mid-call.</p>
+    <div class="call-list">
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-i18n="call1t">🏠 Airbnb — English tourist</div>
+          <div class="call-sub" data-i18n="call1s">Unusual ask: can he bring his service dog (a golden retriever)?</div>
+        </div>
+        <audio preload="none" src="./audio/call-airbnb.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇲🇽</span>
+        <div class="call-meta">
+          <div class="call-title" data-i18n="call2t">💈 Barber shop — local Spanish customer</div>
+          <div class="call-sub" data-i18n="call2s">Unusual ask: can he bring his 4-year-old nephew?</div>
+        </div>
+        <audio preload="none" src="./audio/call-barber.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-i18n="call3t">🧺 Laundry — English expat</div>
+          <div class="call-sub" data-i18n="call3s">Unusual ask: king-size comforter + hypoallergenic detergent for his son's eczema</div>
+        </div>
+        <audio preload="none" src="./audio/call-lavanderia.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🇺🇸</span>
+        <div class="call-meta">
+          <div class="call-title" data-i18n="call4t">🛥️ Tours — English tourist</div>
+          <div class="call-sub" data-i18n="call4s">Unusual ask: is the yacht wheelchair-accessible for his mom?</div>
+        </div>
+        <audio preload="none" src="./audio/call-tours.mp3"></audio>
+      </div>
+      <div class="call-item">
+        <span class="call-flag">🔁</span>
+        <div class="call-meta">
+          <div class="call-title" data-i18n="call5t">🔁 Mid-call language switch</div>
+          <div class="call-sub" data-i18n="call5s">Customer starts in Spanish, switches to English, then back to Spanish</div>
+        </div>
+        <audio preload="none" src="./audio/call-langswitch.mp3"></audio>
+      </div>
+    </div>
+  </section>
+
+  <div class="cards">
+    <div class="card">
+      <h3 data-i18n="card1t">🏠 Real Estate &amp; Airbnb</h3>
+      <p data-i18n="card1d">Answers inquiries, checks availability, books viewings and check-ins in the customer's language.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card2t">💈 Barber Shops</h3>
+      <p data-i18n="card2d">Books appointments and answers questions from expats who don't speak Spanish.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card3t">🧺 Laundromats</h3>
+      <p data-i18n="card3d">Takes pickup/drop-off requests and order status calls, in English or Spanish.</p>
+    </div>
+    <div class="card">
+      <h3 data-i18n="card4t">🛥️ Tours &amp; Excursions</h3>
+      <p data-i18n="card4d">Sofia can also recommend yacht charters, dolphin swims, and local tours to your guests.</p>
+    </div>
+  </div>
+
+  <div class="how-it-works">
+    <h2 data-i18n="howH">How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><p data-i18n="step1">We set Sofia up with your business info — hours, pricing, services.</p></div>
+      <div class="step"><div class="num">2</div><p data-i18n="step2">Your customers call the same number they always have — Sofia answers instantly, in their language.</p></div>
+      <div class="step"><div class="num">3</div><p data-i18n="step3">You get the booking details sent straight to you. No missed calls, no language barrier.</p></div>
+    </div>
+  </div>
+
+  <div class="pricing">
+    <h2 data-i18n="priceH">Simple, flat pricing</h2>
+    <div class="price-row">
+      <div class="price-card">
+        <h3 data-i18n="setupT">One-time setup</h3>
+        <div class="price">$1,899 <span>MXN</span></div>
+        <p data-i18n="setupD">We set Sofia up with your business info — hours, pricing, services.</p>
+      </div>
+      <div class="price-card">
+        <h3 data-i18n="monthT">Monthly</h3>
+        <div class="price">$1,449 <span>MXN/mo</span></div>
+        <p data-i18n="monthD">Flat rate. 24/7 multilingual reception — no per-call fees, ever.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer data-i18n="footer">A demo by Yan — Puerto Morelos, Quintana Roo.</footer>
+
+  <details class="leads">
+    <summary data-i18n="leadsH">Leads captured (this device)</summary>
+    <pre id="leadsList">(none yet)</pre>
+  </details>
+
+  <script src="./vapi-widget.js" defer></script>
+  <script src="./translations.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>

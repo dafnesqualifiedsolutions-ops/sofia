@@ -1,0 +1,2 @@
+:root{ --bg:#06100f; --signal:#2dd4bf; --signal-2:#5eead4; }
+body{ background:radial-gradient(1200px 600px at 50% -10%, rgba(45,212,191,.09), transparent 60%), var(--bg); }
