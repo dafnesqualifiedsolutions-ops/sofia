@@ -5,7 +5,7 @@ const UK_ASSISTANT_ID = "6933946a-8b14-4881-9725-3e4505d3a1eb";
 const LEAD_ENDPOINT = "https://formspree.io/f/xaeebgrz";
 
 const LANGS = [
-  { code: "en",   flag: "🇺🇸", label: "English" },
+  { code: "en",   flag: "🇬🇧", label: "English" },
   { code: "es-MX", flag: "🇲🇽", label: "Español (MX)" },
   { code: "es-ES", flag: "🇪🇸", label: "Español (ES)" },
   { code: "es-CO", flag: "🇨🇴", label: "Español (CO)" },
