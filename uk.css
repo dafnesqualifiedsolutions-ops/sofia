@@ -1,2 +1,2 @@
-/* UK variant — blue/white/red edge instead of Mexican flag */
-:root{--edge:linear-gradient(90deg,#1d3f8f 0%,#ffffff 50%,#cf142b 100%);}
+/* UK variant — Union Jack blue/white/red */
+:root{--edge:linear-gradient(90deg,#012169 0%,#ffffff 50%,#C8102E 100%);}
