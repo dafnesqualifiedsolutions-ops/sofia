@@ -88,7 +88,7 @@ header p{color:var(--muted);font-size:1.05rem;line-height:1.55;}
 .price-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
 .price-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 24px;flex:1;min-width:220px;position:relative;overflow:hidden;}
 .price-card:first-child{border-top:3px solid var(--signal);}
-.price-card.featured{background:linear-gradient(160deg,rgba(255,90,60,.12),var(--surface));border-color:rgba(255,90,60,.4);}
+.price-card.featured{background:linear-gradient(160deg,rgba(207,20,43,.12),var(--surface));border-color:rgba(207,20,43,.4);}
 .price-card h3{color:var(--text);font-family:var(--font-display);font-size:1.1rem;margin-bottom:10px;font-weight:700;}
 .price{font-size:2.2rem;font-weight:800;color:var(--text);margin-bottom:8px;font-family:var(--font-display);letter-spacing:-.02em;}
 .price span{font-size:1rem;color:var(--muted);font-weight:600;font-family:var(--font-body);}

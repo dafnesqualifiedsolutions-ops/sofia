@@ -141,7 +141,7 @@ window.addEventListener("load", function () {
       config: {
         position: "bottom-right",
         offset: "24px",
-        idle: { type: "round", color: "rgb(255,90,60)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
+        idle: { type: "round", color: "rgb(207,20,43)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
         loading: { type: "round", color: "rgb(245,158,11)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg" },
         active: { type: "round", color: "rgb(239,68,68)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg" }
       }
@@ -174,7 +174,7 @@ try { setLang(getLangCode()); } catch (e) { setLang("en"); }
   var biz = p.get('biz') || cfg.businessName;
   var wa = p.get('wa') || cfg.whatsapp;
   var THEMES = {
-    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c', '#ff5a3c'],
+    coral: ['#cf142b', '#e0243c', '#0a0a0c', '#cf142b'],
     gold: ['#f5b53d', '#ffe08a', '#0c0a07', '#ffb15c'],
     violet: ['#a78bfa', '#c4b5fd', '#0b0a12', '#c4b5fd'],
     teal: ['#2dd4bf', '#5eead4', '#06100f', '#5eead4'],
