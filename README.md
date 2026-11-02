@@ -1,4 +1,4 @@
-# Sofia — UK (North West England)
+# Sofia — UK
 
 ## What this is
 The UK clone of the Sofia page: contact at the end, GBP pricing, British AI voice, blue/white/red edge.
@@ -12,7 +12,7 @@ The UK clone of the Sofia page: contact at the end, GBP pricing, British AI voic
 - Up-front year = £1,490 (10 months, 2 months free).
 
 ## AI brain (Vapi assistant)
-- ID: 6933946a-8b14-4881-9725-3e4505d3a1eb  (name: "Sofia - UK North West", British voice en-GB-SoniaNeural)
+- ID: 6933946a-8b14-4881-9725-3e4505d3a1eb  (name: "Sofia - UK", British voice en-GB-SoniaNeural)
 - Localized to Liverpool/Manchester, multi-language for Polish/Urdu/Arabic communities.
 - The page auto-routes its "Talk to Sofia" button to this assistant.
 

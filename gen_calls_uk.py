@@ -6,7 +6,7 @@ os.makedirs(OUT, exist_ok=True)
 
 # pitch samples: one per BUTTON language, UK-framed intro
 PITCH = {
-    "en":    ("en-GB-SoniaNeural",  "Hi, I'm Sofia. I answer calls for your business across the North West — Liverpool, Manchester and beyond — in English and many other languages, day or night."),
+    "en":    ("en-GB-SoniaNeural",  "Hi, I'm Sofia. I answer calls for your business across the UK — London, Manchester, Birmingham and beyond — in English and many other languages, day or night."),
     "es-MX": ("es-MX-DaliaNeural",  "Hola, soy Sofia. Atiendo las llamadas de tu negocio en el norte de Inglaterra — Liverpool, Manchester — en inglés y español, a cualquier hora."),
     "es-ES": ("es-ES-AlvaroNeural", "Hola, soy Sofia. Atiendo las llamadas de tu negocio en el noroeste de Inglaterra — Liverpool, Manchester — en español o inglés, a cualquier hora."),
     "es-CO": ("es-CO-SalomeNeural", "Hola, soy Sofia. Contesto las llamadas de tu negocio en el norte de Inglaterra — Liverpool, Manchester — en español o inglés, a cualquier hora."),
