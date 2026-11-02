@@ -1,0 +1,2 @@
+/* North West England variant — UK blue/white/red edge instead of Mexican flag */
+:root{--edge:linear-gradient(90deg,#1d3f8f 0%,#ffffff 50%,#cf142b 100%);}

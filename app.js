@@ -1,0 +1,243 @@
+const VAPI_PUBLIC_KEY = "pk-67bd7d4d-e8cf-4afc-b26b-a1a54fd45568";
+const VAPI_ASSISTANT_ID = "4c5df6a4-bc7f-47b7-a2fd-7cfae3cfccb1";
+const UK_ASSISTANT_ID = "6933946a-8b14-4881-9725-3e4505d3a1eb";
+// Optional: point this at a form backend (Formspree / Apps Script / etc.) to actually deliver leads to you.
+const LEAD_ENDPOINT = "https://formspree.io/f/xaeebgrz";
+
+const LANGS = [
+  { code: "en",   flag: "🇺🇸", label: "English" },
+  { code: "es-MX", flag: "🇲🇽", label: "Español (MX)" },
+  { code: "es-ES", flag: "🇪🇸", label: "Español (ES)" },
+  { code: "es-CO", flag: "🇨🇴", label: "Español (CO)" },
+  { code: "es-AR", flag: "🇦🇷", label: "Español (AR)" },
+  { code: "fr",   flag: "🇫🇷", label: "Français" },
+  { code: "de",   flag: "🇩🇪", label: "Deutsch" },
+  { code: "nl",   flag: "🇳🇱", label: "Nederlands" },
+  { code: "it",   flag: "🇮🇹", label: "Italiano" },
+  { code: "pt",   flag: "🇧🇷", label: "Português" }
+];
+
+function uiLang(code) { return code.indexOf("es") === 0 ? "es" : code; }
+
+function setLang(code) {
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    const k = el.getAttribute("data-i18n");
+    const v = T[k] && T[k][uiLang(code)];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
+    const k = el.getAttribute("data-i18n-html");
+    const v = T[k] && T[k][uiLang(code)];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
+    const k = el.getAttribute("data-i18n-ph");
+    const v = T[k] && T[k][uiLang(code)];
+    if (v !== undefined) el.placeholder = v;
+  });
+  var AUDIO_BASE = location.pathname.indexOf("uk.html") >= 0 ? "./audio-uk/" : "./audio/";
+  const pa = document.getElementById("pitchAudio");
+  if (pa) pa.src = AUDIO_BASE + "pitch-" + code + ".mp3";
+  const pf = document.getElementById("pitchFlag");
+  const lang = LANGS.find(function (l) { return l.code === code; });
+  if (pf && lang) pf.textContent = lang.flag;
+  document.querySelectorAll(".lang-btn").forEach(function (b) {
+    b.classList.toggle("active", b.dataset.code === code);
+  });
+  try { localStorage.setItem("sofia_lang", code); } catch (e) {}
+}
+
+(function buildButtons() {
+  const row = document.getElementById("langRow");
+  LANGS.forEach(function (l) {
+    const b = document.createElement("button");
+    b.className = "lang-btn";
+    b.dataset.code = l.code;
+    b.title = l.label;
+    b.innerHTML = l.flag + ' <span>' + l.label + "</span>";
+    b.onclick = function () { setLang(l.code); };
+    row.appendChild(b);
+  });
+})();
+
+function saveLead(lead) {
+  try {
+    const all = JSON.parse(localStorage.getItem("sofia_leads") || "[]");
+    all.push(lead);
+    localStorage.setItem("sofia_leads", JSON.stringify(all));
+    renderLeads();
+  } catch (e) {}
+  if (LEAD_ENDPOINT) {
+    fetch(LEAD_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(lead)
+    }).catch(function () {});
+  }
+}
+
+function renderLeads() {
+  const el = document.getElementById("leadsList");
+  if (!el) return;
+  try {
+    const all = JSON.parse(localStorage.getItem("sofia_leads") || "[]");
+    if (!all.length) { el.textContent = "(none yet)"; return; }
+    el.textContent = all.map(function (l) {
+      const t = new Date(l.t).toLocaleString();
+      return "[" + l.type + "] " + (l.region || "-") + " | " + (l.name || "-") + " | " + (l.phone || "-") +
+             " | " + (l.intent || "") + " | " + l.lang + " | " + t;
+    }).join("\n");
+  } catch (e) { el.textContent = "(error)"; }
+}
+renderLeads();
+
+let vapi = null, inCall = false;
+function getLangCode() { try { return localStorage.getItem("sofia_lang") || "en"; } catch (e) { return "en"; } }
+var REGION = location.pathname.indexOf("uk.html") >= 0 ? "UK" : "MX";
+function assistantId() { return location.pathname.indexOf("uk.html") >= 0 ? UK_ASSISTANT_ID : VAPI_ASSISTANT_ID; }
+
+function startCall() {
+  const status = document.getElementById("statusLine");
+  if (!vapi) { status.textContent = "Voice SDK did not load."; return; }
+  status.textContent = "Connecting...";
+  vapi.start(assistantId()).catch(function (e) {
+    console.error(e);
+    status.textContent = "Could not connect. Check microphone permissions.";
+  });
+}
+function endCall() { if (vapi) vapi.stop(); }
+
+document.getElementById("gateForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (inCall) { endCall(); return; }
+  const name = document.getElementById("gateName").value.trim();
+  const phone = document.getElementById("gatePhone").value.trim();
+  const consent = document.getElementById("gateConsent").checked;
+  const status = document.getElementById("statusLine");
+  if (!name || !phone) { status.textContent = "Please enter your name and number."; return; }
+  if (!consent) { status.textContent = "Please tick the consent box to talk to Sofia."; return; }
+  saveLead({ type: "talk", name: name, phone: phone, lang: getLangCode(), region: REGION, consent: true, t: new Date().toISOString() });
+  startCall();
+});
+
+document.getElementById("cbForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const name = document.getElementById("cbName").value.trim();
+  const phone = document.getElementById("cbPhone").value.trim();
+  const intent = document.getElementById("cbIntent").value;
+  const status = document.getElementById("cbStatus");
+  if (!phone) { status.textContent = "Please enter a number."; return; }
+  saveLead({ type: "callback", name: name || "-", phone: phone, intent: intent, lang: getLangCode(), region: REGION, t: new Date().toISOString() });
+  status.textContent = (T.cbThanks && T.cbThanks[uiLang(getLangCode())]) || "Got it — we'll be in touch.";
+  e.target.reset();
+});
+
+window.addEventListener("load", function () {
+  if (!window.vapiSDK) return;
+  try {
+    vapi = window.vapiSDK.run({
+      apiKey: VAPI_PUBLIC_KEY,
+      assistant: assistantId(),
+      config: {
+        position: "bottom-right",
+        offset: "24px",
+        idle: { type: "round", color: "rgb(255,90,60)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone.svg" },
+        loading: { type: "round", color: "rgb(245,158,11)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/loader-2.svg" },
+        active: { type: "round", color: "rgb(239,68,68)", icon: "https://unpkg.com/lucide-static@0.321.0/icons/phone-off.svg" }
+      }
+    });
+  } catch (e) { console.error("vapiSDK.run failed", e); return; }
+  if (vapi && vapi.on) {
+    vapi.on("call-start", function () {
+      inCall = true;
+      if (window.__setPulse) window.__setPulse(true);
+      document.getElementById("gateBtn").textContent = "Hang up";
+      document.getElementById("statusLine").textContent = "Connected — talk to Sofia now.";
+    });
+    vapi.on("call-end", function () {
+      inCall = false;
+      if (window.__setPulse) window.__setPulse(false);
+      document.getElementById("gateBtn").textContent = (T.gateBtn && T.gateBtn[uiLang(getLangCode())]) || "Start call with Sofia";
+      document.getElementById("statusLine").textContent = "Call ended.";
+    });
+    vapi.on("error", function (e) { console.error("Vapi error", e); });
+  }
+});
+
+try { setLang(getLangCode()); } catch (e) { setLang("en"); }
+
+/* === Per-client branding (config.js + ?biz / ?wa / ?accent / ?theme) === */
+(function applyBrand() {
+  function hexA(h, a) { var n = parseInt(h.slice(1), 16); return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + a + ')'; }
+  var cfg = window.SOFIA_CONFIG || {};
+  var p = new URLSearchParams(location.search);
+  var biz = p.get('biz') || cfg.businessName;
+  var wa = p.get('wa') || cfg.whatsapp;
+  var THEMES = {
+    coral: ['#ff5a3c', '#ffb15c', '#0a0a0c', '#ff5a3c'],
+    gold: ['#f5b53d', '#ffe08a', '#0c0a07', '#ffb15c'],
+    violet: ['#a78bfa', '#c4b5fd', '#0b0a12', '#c4b5fd'],
+    teal: ['#2dd4bf', '#5eead4', '#06100f', '#5eead4'],
+    lime: ['#c6f24e', '#e9ff8a', '#0a0c06', '#e9ff8a'],
+    mexico: ['#18B85C', '#7CE0A0', '#0a0a0c', '#E0243C']
+  };
+  var accent = p.get('accent') || cfg.accent;
+  var theme = p.get('theme');
+  var s = (theme && THEMES[theme]) ? THEMES[theme] : (accent ? [accent, accent, ''] : null);
+  if (s) {
+    document.documentElement.style.setProperty('--signal', s[0]);
+    document.documentElement.style.setProperty('--signal-2', s[1]);
+    document.documentElement.style.setProperty('--pulse', s[3] || s[1]);
+    if (s[2]) document.documentElement.style.setProperty('--bg', s[2]);
+    document.body.style.background = 'radial-gradient(1200px 600px at 50% -10%, ' + hexA(s[0], .09) + ', transparent 60%), ' + (s[2] || '#0a0a0c');
+  }
+  if (biz && biz !== 'Your Business') document.title = biz + ' · Sofia AI';
+  if (wa) {
+    var btn = document.getElementById('waBtn');
+    if (btn) btn.outerHTML = '<a class="wa-btn" href="https://wa.me/' + wa.replace(/[^0-9]/g, '') + '" target="_blank" rel="noopener">' + btn.innerHTML + '</a>';
+  }
+})();
+
+(function pulseCtl() {
+  var audioN = 0, callOn = false;
+  window.__setPulse = function (on) { callOn = !!on; refresh(); };
+  function refresh() { document.body.classList.toggle('pulsing', audioN > 0 || callOn); }
+  document.querySelectorAll('audio').forEach(function (a) {
+    a.addEventListener('play', function () { audioN++; refresh(); });
+    a.addEventListener('pause', function () { audioN = Math.max(0, audioN - 1); refresh(); });
+    a.addEventListener('ended', function () { audioN = Math.max(0, audioN - 1); refresh(); });
+  });
+})();
+
+/* === Custom waveform audio players === */
+(function () {
+  var COUNT = 32;
+  document.querySelectorAll('audio').forEach(function (a) {
+    var wrap = document.createElement('div'); wrap.className = 'player';
+    var btn = document.createElement('button'); btn.className = 'play'; btn.type = 'button'; btn.innerHTML = '<span class="ic">▶</span>';
+    var eq = document.createElement('div'); eq.className = 'peq'; var bars = [];
+    for (var i = 0; i < COUNT; i++) { var b = document.createElement('span'); b.style.setProperty('--h', (18 + Math.random() * 70) + '%'); eq.appendChild(b); bars.push(b); }
+    var time = document.createElement('span'); time.className = 'ptime'; time.textContent = '0:00';
+    wrap.appendChild(btn); wrap.appendChild(eq); wrap.appendChild(time);
+    a.parentNode.insertBefore(wrap, a); a.style.display = 'none';
+    function fmt(s) { if (!isFinite(s)) return '0:00'; s = Math.floor(s); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+    function upd() { var d = a.duration || 1; var r = (a.currentTime || 0) / d; bars.forEach(function (b, i) { b.classList.toggle('on', (i + 0.5) / COUNT <= r); }); time.textContent = fmt(a.currentTime) + (isFinite(a.duration) ? ' / ' + fmt(a.duration) : ''); }
+    btn.addEventListener('click', function () { if (a.paused) a.play(); else a.pause(); });
+    a.addEventListener('play', function () { wrap.classList.add('playing'); btn.querySelector('.ic').textContent = '❚❚'; });
+    a.addEventListener('pause', function () { wrap.classList.remove('playing'); btn.querySelector('.ic').textContent = '▶'; });
+    a.addEventListener('ended', function () { wrap.classList.remove('playing'); btn.querySelector('.ic').textContent = '▶'; });
+    a.addEventListener('timeupdate', upd);
+    a.addEventListener('loadedmetadata', upd);
+  });
+})();
+/* === Hero waveform === */
+(function () { var el = document.getElementById('heroWave'); if (!el) return; for (var i = 0; i < 56; i++) { var s = document.createElement('span'); s.style.animationDelay = (i * 0.05) + 's'; s.style.setProperty('--h', (20 + Math.random() * 70) + '%'); el.appendChild(s); } })();
+/* === Section kickers === */
+(function () {
+  var map = [
+    ['.listen', '01 — Hear Sofia'], ['.gate', '02 — Talk Live'], ['.callback', '03 — Callback'],
+    ['.calls-demo', '04 — Real Calls'], ['.cards', '05 — Who It Helps'],
+    ['.how-it-works', '06 — How It Works'], ['.pricing', '07 — Pricing']
+  ];
+  map.forEach(function (m) { var s = document.querySelector(m[0]); if (s) { var k = document.createElement('div'); k.className = 'kicker'; k.textContent = m[1]; s.parentNode.insertBefore(k, s); } });
+})();
